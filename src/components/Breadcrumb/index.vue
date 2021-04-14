@@ -48,7 +48,7 @@ export default {
 
       // 如果不是，就往后拼接 Dashboard/Guide | Dashboard/Permission/Page Permission
       if (!this.isDashboard(first)) {
-        matched = [{ path: "/dashboard", meta: { title: "Dashboard" } }].concat(matched);
+        matched = [{ path: "/dashboard", meta: { title: "首页" } }].concat(matched);
       }
 
       // 如果存在meta且meta中有title，且meta中的breadcrumb不为false
