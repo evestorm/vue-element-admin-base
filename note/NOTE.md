@@ -96,3 +96,7 @@ https://youtrack.jetbrains.com/issue/WEB-35472
 5. 打开文件 → 设置 → 快捷键，查看“prettier”的快捷键是什么：![webstorm-prettier-config](./images/webstorm-prettier-config.png)
 6. 打开要格式化的文件，cmd+alt+s 就 ok 了
 7. end
+
+## build/index.js 作用
+
+注释见该文件夹
