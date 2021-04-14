@@ -100,3 +100,7 @@ https://youtrack.jetbrains.com/issue/WEB-35472
 ## build/index.js 作用
 
 注释见该文件夹
+
+## 提取 mock 数据 baseURL
+
+见 `mock` 文件夹。
