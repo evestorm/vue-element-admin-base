@@ -103,4 +103,22 @@ https://youtrack.jetbrains.com/issue/WEB-35472
 
 ## 提取 mock 数据 baseURL
 
-见 `mock` 文件夹。
+项目根目录新建 `.env` 文件。
+
+```shell
+# vue-cli 项目中设置环境变量得以 `VUE_APP_` 为前缀开头设置
+VUE_APP_MOCK_PREFIX = '/vue-element-admin'
+```
+
+将 `mock` 和 `src/api` 下所有 '/vue-element-admin' 提取为变量保存引入，类似：
+
+```js
+const baseUrl = process.env.VUE_APP_MOCK_PREFIX;
+
+module.exports = [
+  {
+    url: `${baseUrl}/article/list`,
+    // ...
+  },
+];
+```

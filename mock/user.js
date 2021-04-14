@@ -22,7 +22,7 @@ const users = {
   },
 };
 
-const baseUrl = "/vue-element-admin";
+const baseUrl = process.env.VUE_APP_MOCK_PREFIX;
 
 module.exports = [
   // user login

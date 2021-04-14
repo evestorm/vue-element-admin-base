@@ -12,7 +12,7 @@ for (let i = 0; i < count; i++) {
 }
 NameList.push({ name: "mock-Pan" });
 
-const baseUrl = "/vue-element-admin";
+const baseUrl = process.env.VUE_APP_MOCK_PREFIX;
 
 module.exports = [
   // username search

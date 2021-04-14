@@ -29,7 +29,7 @@ for (let i = 0; i < count; i++) {
   );
 }
 
-const baseUrl = "/vue-element-admin";
+const baseUrl = process.env.VUE_APP_MOCK_PREFIX;
 
 module.exports = [
   {
