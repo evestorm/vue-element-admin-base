@@ -221,7 +221,7 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    semi: [2, "never"],
+    semi: 0,
     "semi-spacing": [
       2,
       {
@@ -271,7 +271,7 @@ module.exports = {
         printWidth: 180, // 一行的字符数，如果超过会进行换行，默认为80
         tabWidth: 2, // 一个tab代表几个空格数，默认为2
         useTabs: false, // 是否使用tab进行缩进，默认为false，表示用空格进行缩减
-        semi: false, // 行尾是否使用分号，默认为true
+        semi: true, // 行尾是否使用分号，默认为true
         singleQuote: false, // 字符串是否使用单引号，默认为false，使用双引号
         quoteProps: "as-needed", // 对象属性的引号使用 as-needed:仅在需要的时候使用 | consistent:有一个属性需要引号，就都需要引号 | preserve:保留用户输入的情况 默认 as-needed
         jsxSingleQuote: false, // 在JSX中使用单引号而不是双引号。默认 false

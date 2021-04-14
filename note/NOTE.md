@@ -59,15 +59,15 @@ module.exports = {
         embeddedLanguageFormatting: "auto", // default:"auto"
       },
     ],
-  }
-}
+  },
+};
 ```
 
-项目根目录新建 ``.prettierrc.js`` 文件，代码见文件内部。
+项目根目录新建 `.prettierrc.js` 文件，代码见文件内部。
 
 ## VSCode 相关配置
 
-在项目根目录新建 ``.vscode`` 文件夹，包含内容见 `./.vscode/` 。
+在项目根目录新建 `.vscode` 文件夹，包含内容见 `./.vscode/` 。
 
 此配置可以让使用 VSCode 的人安装相关插件提高开发效率。
 
@@ -88,11 +88,11 @@ https://youtrack.jetbrains.com/issue/WEB-35472
 
 好了，如果我现在已经有了这么一个文件名称为：prettier.config.js 的配置文件，该如何让 webstorm 应用该配置？
 
-1. 打开文件→设置→工具→File Watcher
+1. 打开文件 → 设置 → 工具 →File Watcher
 2. 点击 +，选择 prettier
 3. 没有 prettier 的，需要自行配置 prettier ：文档见 https://prettier.io/docs/en/webstorm.html#running-prettier-on-save-using-file-watcher 配置截图：
    ![webstorm-prettier-config](./images/webstorm-prettier-config.png)
 4. 一般来说，完全不需要改动配置，直接确定即可
-5. 打开文件→设置→快捷键，查看“prettier”的快捷键是什么：![webstorm-prettier-config](./images/webstorm-prettier-config.png)
-6. 打开要格式化的文件，cmd+alt+s 就ok了
+5. 打开文件 → 设置 → 快捷键，查看“prettier”的快捷键是什么：![webstorm-prettier-config](./images/webstorm-prettier-config.png)
+6. 打开要格式化的文件，cmd+alt+s 就 ok 了
 7. end
