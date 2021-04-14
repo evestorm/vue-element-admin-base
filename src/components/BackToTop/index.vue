@@ -15,10 +15,12 @@ export default {
   name: "BackToTop",
   props: {
     visibilityHeight: {
+      // 向上滚动多少像素显示组件
       type: Number,
       default: 400,
     },
     backPosition: {
+      // 点击按钮，回到距离顶部多少像素
       type: Number,
       default: 0,
     },

@@ -20,7 +20,7 @@ export default {
   },
   watch: {
     $route(route) {
-      // if you go to the redirect page, do not update the breadcrumbs
+      // 如果去重定向页面,不更新面包屑
       if (route.path.startsWith("/redirect/")) {
         return;
       }
@@ -31,17 +31,32 @@ export default {
     this.getBreadcrumb();
   },
   methods: {
+    /**
+     * @description 获取面包屑
+     */
     getBreadcrumb() {
-      // only show routes with meta.title
+      // 只显示 meta.title 的路由
       let matched = this.$route.matched.filter(item => item.meta && item.meta.title);
+      // [{
+      // meta: {
+      //    icon: "guide"
+      //    noCache: true
+      //    title: "Guide"
+      // }
+      // }]
       const first = matched[0];
 
+      // 如果不是，就往后拼接 Dashboard/Guide | Dashboard/Permission/Page Permission
       if (!this.isDashboard(first)) {
         matched = [{ path: "/dashboard", meta: { title: "Dashboard" } }].concat(matched);
       }
 
+      // 如果存在meta且meta中有title，且meta中的breadcrumb不为false
       this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false);
     },
+    /**
+     * @description 是否为 Dashboard
+     */
     isDashboard(route) {
       const name = route && route.name;
       if (!name) {
@@ -49,18 +64,33 @@ export default {
       }
       return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
     },
+    /**
+     * @description 让面包屑支持:id的方式
+     * @issue https://github.com/PanJiaChen/vue-element-admin/issues/561
+     */
     pathCompile(path) {
       // To solve this problem https://github.com/PanJiaChen/vue-element-admin/issues/561
       const { params } = this.$route;
-      var toPath = pathToRegexp.compile(path);
+      const toPath = pathToRegexp.compile(path);
       return toPath(params);
     },
+    /**
+     * @description 跳转选中面包屑
+     */
     handleLink(item) {
-      const { redirect, path } = item;
+      const { redirect, path } = item; // item为当前选中的面包屑route
+
+      // path: "/permission"
+      // redirect: "/permission/page"
+
+      // 如果有 redirect ，就重定向到指定页面
       if (redirect) {
         this.$router.push(redirect);
         return;
       }
+
+      // 没有就
+      // path: "/dashboard"
       this.$router.push(this.pathCompile(path));
     },
   },
