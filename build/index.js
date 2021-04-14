@@ -12,7 +12,7 @@ const args = rawArgv.join(" "); // --preview
 
 // [
 //   '/Users/yangliang/.nvm/versions/node/v14.15.1/bin/node',
-//   '/Users/yangliang/Desktop/project/github/vue-admin-template/build/index.js',
+//   '/Users/yangliang/Desktop/project/github/vue-element-admin/build/index.js',
 //   '--preview'
 // ]
 
