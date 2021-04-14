@@ -11,6 +11,7 @@
 </template>
 
 <script>
+// 感觉没啥用，可以忽略的组件
 export default {
   props: {
     items: {

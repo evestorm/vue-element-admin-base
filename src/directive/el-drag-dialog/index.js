@@ -1,5 +1,5 @@
 import drag from "./drag";
-
+// 没啥用
 const install = function (Vue) {
   Vue.directive("el-drag-dialog", drag);
 };

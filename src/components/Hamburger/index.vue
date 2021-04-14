@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// 切换侧边栏显示收缩的汉堡包组件
 export default {
   name: "Hamburger",
   props: {

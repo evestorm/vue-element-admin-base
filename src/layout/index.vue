@@ -16,6 +16,7 @@
 </template>
 
 <script>
+// 右边设置的侧边栏
 import RightPanel from "@/components/RightPanel";
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from "./components";
 import ResizeMixin from "./mixin/ResizeHandler";

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+// 上传头像的头像预览
 export default {
   name: "PanThumb",
   props: {

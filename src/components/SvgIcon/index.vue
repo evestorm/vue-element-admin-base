@@ -7,6 +7,8 @@
 
 <script>
 // doc: https://panjiachen.github.io/vue-element-admin-site/feature/component/svg-icon.html#usage
+// svg图标，路径：src/icons/svg 直接在文件夹中添加或删除
+// 中文文档：https://panjiachen.github.io/vue-element-admin-site/zh/feature/component/svg-icon.html#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F
 import { isExternal } from "@/utils/validate";
 
 export default {

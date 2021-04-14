@@ -18,6 +18,7 @@
 </template>
 
 <style scoped>
+/* 首页右上角github角标 */
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }

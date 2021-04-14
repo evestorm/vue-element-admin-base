@@ -18,8 +18,8 @@
 </template>
 
 <script>
-// fuse is a lightweight fuzzy-search module
-// make search results more in line with expectations
+// fuse is a lightweight fuzzy-search module 熔断器是一种轻量级模糊搜索模块
+// make search results more in line with expectations 使搜索结果更加符合预期
 import Fuse from "fuse.js";
 import path from "path";
 

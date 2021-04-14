@@ -7,6 +7,7 @@
 <script>
 import Sortable from "sortablejs";
 
+// 拖拽select选择器
 export default {
   name: "DragSelect",
   props: {

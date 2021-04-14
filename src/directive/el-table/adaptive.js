@@ -1,5 +1,5 @@
 import { addResizeListener, removeResizeListener } from "element-ui/src/utils/resize-event";
-
+// 项目中没有地方在用，可能有用
 /**
  * How to use
  * <el-table height="100px" v-el-height-adaptive-table="{bottomOffset: 30}">...</el-table>

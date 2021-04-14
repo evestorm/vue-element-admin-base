@@ -9,6 +9,7 @@
 </template>
 
 <script>
+// 吸顶容器，把标签放进来就好了
 export default {
   name: "Sticky",
   props: {

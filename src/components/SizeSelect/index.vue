@@ -12,6 +12,7 @@
 </template>
 
 <script>
+// 设置大小，但感觉没啥用
 export default {
   data() {
     return {

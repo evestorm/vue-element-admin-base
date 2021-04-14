@@ -21,36 +21,44 @@ export default {
   name: "Pagination",
   props: {
     total: {
+      // 总数
       required: true,
       type: Number,
     },
     page: {
+      // 总页数
       type: Number,
       default: 1,
     },
     limit: {
+      // 每页限制多少条
       type: Number,
       default: 20,
     },
     pageSizes: {
+      // 快捷选择跳到第多少页
       type: Array,
       default() {
         return [10, 20, 30, 50];
       },
     },
     layout: {
+      // 分页布局
       type: String,
       default: "total, sizes, prev, pager, next, jumper",
     },
     background: {
+      // 页数按钮要不要背景色
       type: Boolean,
       default: true,
     },
     autoScroll: {
+      // 选择页码后自动滚动到顶部
       type: Boolean,
       default: true,
     },
     hidden: {
+      // 是否隐藏分页组件
       type: Boolean,
       default: false,
     },

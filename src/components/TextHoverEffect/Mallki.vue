@@ -7,6 +7,7 @@
 </template>
 
 <script>
+// 感觉没啥用
 export default {
   props: {
     className: {
