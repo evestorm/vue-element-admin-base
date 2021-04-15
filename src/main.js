@@ -20,6 +20,11 @@ import "./utils/error-log"; // 错误日志
 
 import * as filters from "./filters"; // 全局过滤器
 
+// 后期加入的库
+import moment from "moment";
+import * as utils from "./utils/index";
+import create from "@/utils/create.js";
+
 /**
  * 如果你不想用 mock-server
  * 你想使用 MockJs 模拟 api
@@ -44,6 +49,20 @@ Object.keys(filters).forEach(key => {
 });
 
 Vue.config.productionTip = false;
+
+// 扩展Vue原型
+function prototypeEx(Vue) {
+  // vue prototype 扩展
+  moment.locale("zh-CN");
+  Vue.prototype.$moment = moment; // 加入 moment使用
+  // Vue.prototype.$storage = storage; // 用于存储
+  Vue.prototype.$store = store; // vuex
+  Vue.prototype.$utils = utils; // 帮助类
+  Vue.prototype.$create = create; // js调用组件
+}
+
+// 扩展vue原型属性
+prototypeEx(Vue);
 
 new Vue({
   el: "#app",

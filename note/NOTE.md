@@ -122,3 +122,23 @@ module.exports = [
   },
 ];
 ```
+
+## 加入一些其他元素
+
+### moment.js 时间库
+
+```shell
+npm i moment
+```
+
+在 `main.js` 中加入。
+
+`views/demo/moement` 下有一些用法示例可查看。
+
+### create.js 通过 js 创建组件
+
+目录：`utils/create.js`，用来通过 js 方式创建组件。
+
+### utils/index.js 文件
+
+加入了一些自己常见的方法，挂载到了 `Vue.prototype` 上，可以通过 `this.$utils.xxx` 来使用它们。

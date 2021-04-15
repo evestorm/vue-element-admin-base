@@ -11,6 +11,7 @@ import componentsRouter from "./modules/components"; // 组件二级路由
 import chartsRouter from "./modules/charts"; // 图表二级路由
 import tableRouter from "./modules/table"; // 表格二级路由
 import nestedRouter from "./modules/nested"; // 嵌套多级路由
+import demoRouter from "./modules/demo"; // 各种demo使用
 
 /**
  * 子菜单 sub-menu 只出现在 children.length >= 1
@@ -193,6 +194,7 @@ export const asyncRoutes = [
   chartsRouter,
   nestedRouter,
   tableRouter,
+  demoRouter,
 
   {
     path: "/example",
