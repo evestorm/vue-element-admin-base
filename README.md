@@ -53,27 +53,28 @@ npm run lint -- --fix
 │   ├── api                    # api 服务
 │   ├── assets                 # 模块等资产字体、图片 (由 webpack 处理)
 │   ├── components             # 全局组件
-│   ├── directive              # global directive
-│   ├── filters                # global filter
+│   ├── directive              # 全局指令
+│   ├── filters                # 全局过滤器
 │   ├── icons                  # svg icons
-│   ├── lang                   # i18n language
-│   ├── layout                 # global layout
-│   ├── router                 # router
-│   ├── store                  # store
-│   ├── styles                 # global css
-│   ├── utils                  # global utils
-│   ├── vendor                 # vendor
-│   ├── views                  # views
-│   ├── App.vue                # main app component
-│   ├── main.js                # app entry file
-│   └── permission.js          # permission authentication
-├── tests                      # tests
-├── .env.xxx                   # env variable configuration
-├── .eslintrc.js               # eslint config
-├── .babelrc                   # babel config
-├── .travis.yml                # automated CI configuration
-├── vue.config.js              # vue-cli config
-├── postcss.config.js          # postcss config
+│   ├── lang                   # 国际化（已删除）
+│   ├── layout                 # 全局布局
+│   ├── router                 # 路由
+│   ├── store                  # vuex
+│   ├── styles                 # 全局css
+│   ├── utils                  # 全局工具
+│   ├── vendor                 # 三方插件
+│   ├── views                  # 视图
+│   ├── App.vue                # 主要应用程序组件
+│   ├── main.js                # 入口文件
+│   ├── permission.js          # 权限认证
+│   └── settings.js            # 默认配置
+├── tests                      # 测试
+├── .env.xxx                   # 环境变量
+├── .eslintignore              # eslint 白名单
+├── .eslintrc.js               # eslint 配置
+├── .babelrc                   # babel 配置
+├── vue.config.js              # vue-cli 配置
+├── postcss.config.js          # postcss 配置
 └── package.json               # package.json
 ```
 
