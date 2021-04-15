@@ -61,6 +61,15 @@ npm run lint -- --fix
 │   ├── router                 # 路由
 │   ├── store                  # vuex
 │   ├── styles                 # 全局css
+│   └── styles                 # 全局css
+│     ├── btn.scss                 # 按钮样式
+│     ├── element-ui.scss          # 全局自定义 element-ui 样式
+│     ├── element-variables        # 覆盖 element-ui 默认主题样式
+│     ├── index.scss               # 全局通用样式
+│     ├── mixin.scss               # 全局mixin
+│     ├── sidebar.scss             # sidebar css
+│     ├── transition.scss          # vue transition 动画
+│     └── variables.scss           # 全局变量
 │   ├── utils                  # 全局工具
 │   ├── vendor                 # 三方插件
 │   ├── views                  # 视图
