@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { fetchList } from "@/api/article";
+import $article from "@/api/article";
 
 export default {
   name: "SelectExcel",
@@ -57,7 +57,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true;
-      fetchList(this.listQuery).then(response => {
+      $article.fetchList(this.listQuery).then(response => {
         this.list = response.data.items;
         this.listLoading = false;
       });

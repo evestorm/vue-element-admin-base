@@ -74,8 +74,8 @@ import Upload from "@/components/Upload/SingleImage3";
 import MDinput from "@/components/MDinput";
 import Sticky from "@/components/Sticky"; // 粘性header组件
 import { validURL } from "@/utils/validate";
-import { fetchArticle } from "@/api/article";
-import { searchUser } from "@/api/remote-search";
+import $article from "@/api/article";
+import $search from "@/api/remote-search";
 import Warning from "./Warning";
 import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from "./Dropdown";
 
@@ -172,7 +172,8 @@ export default {
   },
   methods: {
     fetchData(id) {
-      fetchArticle(id)
+      $article
+        .fetchArticle(id)
         .then(response => {
           this.postForm = response.data;
 
@@ -235,7 +236,7 @@ export default {
       this.postForm.status = "draft";
     },
     getRemoteUserList(query) {
-      searchUser(query).then(response => {
+      $search.searchUser(query).then(response => {
         if (!response.data.items) return;
         this.userListOptions = response.data.items.map(v => v.name);
       });

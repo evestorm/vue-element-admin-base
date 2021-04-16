@@ -25,19 +25,20 @@ const users = {
 const baseUrl = process.env.VUE_APP_MOCK_PREFIX;
 
 module.exports = [
-  // user login
+  // 用户登录
   {
     url: `${baseUrl}/user/login`,
     type: "post",
     response: config => {
       const { username } = config.body;
+      console.log(username);
       const token = tokens[username];
 
-      // mock error
+      // 模拟账号登录失败时的错误
       if (!token) {
         return {
           code: 60204,
-          message: "Account and password are incorrect.",
+          message: "帐号或密码错误",
         };
       }
 
@@ -48,7 +49,7 @@ module.exports = [
     },
   },
 
-  // get user info
+  // 获取用户信息
   {
     url: `${baseUrl}/user/info\.*`,
     type: "get",
@@ -56,11 +57,11 @@ module.exports = [
       const { token } = config.query;
       const info = users[token];
 
-      // mock error
+      // 模拟错误
       if (!info) {
         return {
           code: 50008,
-          message: "Login failed, unable to get user details.",
+          message: "登录失败，无法获取用户信息",
         };
       }
 
@@ -71,7 +72,7 @@ module.exports = [
     },
   },
 
-  // user logout
+  // 用户登出
   {
     url: `${baseUrl}/user/logout`,
     type: "post",

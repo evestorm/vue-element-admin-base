@@ -22,8 +22,10 @@ import * as filters from "./filters"; // 全局过滤器
 
 // 后期加入的库
 import moment from "moment";
-import * as utils from "./utils/index";
+import * as utils from "@/utils/index";
 import create from "@/utils/create.js";
+import MinCache from "@/utils/unistorage/MinCache";
+import storage from "@/utils/unistorage/index";
 
 /**
  * 如果你不想用 mock-server
@@ -48,6 +50,9 @@ Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
 
+// 注册缓存器
+Vue.use(MinCache);
+
 Vue.config.productionTip = false;
 
 // 扩展Vue原型
@@ -55,7 +60,7 @@ function prototypeEx(Vue) {
   // vue prototype 扩展
   moment.locale("zh-CN");
   Vue.prototype.$moment = moment; // 加入 moment使用
-  // Vue.prototype.$storage = storage; // 用于存储
+  Vue.prototype.$storage = storage; // 用于存储
   Vue.prototype.$store = store; // vuex
   Vue.prototype.$utils = utils; // 帮助类
   Vue.prototype.$create = create; // js调用组件

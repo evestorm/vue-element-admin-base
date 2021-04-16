@@ -49,7 +49,7 @@
 <script>
 import path from "path";
 import { deepClone } from "@/utils";
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from "@/api/role";
+import $role from "@/api/role";
 
 const defaultRole = {
   key: "",
@@ -85,12 +85,12 @@ export default {
   },
   methods: {
     async getRoutes() {
-      const res = await getRoutes();
+      const res = await $role.getRoutes();
       this.serviceRoutes = res.data;
       this.routes = this.generateRoutes(res.data);
     },
     async getRoles() {
-      const res = await getRoles();
+      const res = await $role.getRoles();
       this.rolesList = res.data;
     },
 
@@ -163,7 +163,7 @@ export default {
         type: "warning",
       })
         .then(async () => {
-          await deleteRole(row.key);
+          await $role.deleteRole(row.key);
           this.rolesList.splice($index, 1);
           this.$message({
             type: "success",
@@ -198,7 +198,7 @@ export default {
       this.role.routes = this.generateTree(deepClone(this.serviceRoutes), "/", checkedKeys);
 
       if (isEdit) {
-        await updateRole(this.role.key, this.role);
+        await $role.updateRole(this.role.key, this.role);
         for (let index = 0; index < this.rolesList.length; index++) {
           if (this.rolesList[index].key === this.role.key) {
             this.rolesList.splice(index, 1, Object.assign({}, this.role));
@@ -206,7 +206,7 @@ export default {
           }
         }
       } else {
-        const { data } = await addRole(this.role);
+        const { data } = await $role.addRole(this.role);
         this.role.key = data.key;
         this.rolesList.push(this.role);
       }

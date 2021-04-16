@@ -118,7 +118,7 @@
 </template>
 
 <script>
-import { fetchList, fetchPv, createArticle, updateArticle } from "@/api/article";
+import $article from "@/api/article";
 import waves from "@/directive/waves"; // waves directive
 import { parseTime } from "@/utils";
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
@@ -206,7 +206,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true;
-      fetchList(this.listQuery).then(response => {
+      $article.fetchList(this.listQuery).then(response => {
         this.list = response.data.items;
         this.total = response.data.total;
 
@@ -265,7 +265,7 @@ export default {
         if (valid) {
           this.temp.id = parseInt(Math.random() * 100) + 1024; // mock a id
           this.temp.author = "vue-element-admin";
-          createArticle(this.temp).then(() => {
+          $article.createArticle(this.temp).then(() => {
             this.list.unshift(this.temp);
             this.dialogFormVisible = false;
             this.$notify({
@@ -292,7 +292,7 @@ export default {
         if (valid) {
           const tempData = Object.assign({}, this.temp);
           tempData.timestamp = +new Date(tempData.timestamp); // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          updateArticle(tempData).then(() => {
+          $article.updateArticle(tempData).then(() => {
             const index = this.list.findIndex(v => v.id === this.temp.id);
             this.list.splice(index, 1, this.temp);
             this.dialogFormVisible = false;
@@ -316,7 +316,7 @@ export default {
       this.list.splice(index, 1);
     },
     handleFetchPv(pv) {
-      fetchPv(pv).then(response => {
+      $article.fetchPv(pv).then(response => {
         this.pvData = response.data.pvData;
         this.dialogPvVisible = true;
       });

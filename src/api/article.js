@@ -1,41 +1,37 @@
 import request from "@/utils/request";
 
-export function fetchList(query) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/article/list`,
-    method: "get",
-    params: query,
-  });
-}
+// http api
+const urlLists = {
+  /**
+   * ! ---------------------- 文章 ----------------------
+   */
+  fetchList: `${process.env.VUE_APP_MOCK_PREFIX}/article/list`, // 获取列表
+  fetchArticle: `${process.env.VUE_APP_MOCK_PREFIX}/article/detail`, // 获取文章
+  fetchPv: `${process.env.VUE_APP_MOCK_PREFIX}/article/pv`, // 获取页面浏览量
+  createArticle: `${process.env.VUE_APP_MOCK_PREFIX}/article/create`, // 创建文章
+  updateArticle: `${process.env.VUE_APP_MOCK_PREFIX}/article/update`, // 更新文章
+};
 
-export function fetchArticle(id) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/article/detail`,
-    method: "get",
-    params: { id },
-  });
-}
+const fetchList = params => {
+  return request.get(urlLists.fetchList, params);
+};
+const fetchArticle = (params = { id: "" }) => {
+  return request.get(urlLists.fetchArticle, params);
+};
+const fetchPv = (params = { pv: "" }) => {
+  return request.get(urlLists.fetchPv, params);
+};
+const createArticle = params => {
+  return request.post(urlLists.createArticle, params);
+};
+const updateArticle = params => {
+  return request.post(urlLists.updateArticle, params);
+};
 
-export function fetchPv(pv) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/article/pv`,
-    method: "get",
-    params: { pv },
-  });
-}
-
-export function createArticle(data) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/article/create`,
-    method: "post",
-    data,
-  });
-}
-
-export function updateArticle(data) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/article/update`,
-    method: "post",
-    data,
-  });
-}
+export default {
+  fetchList,
+  fetchArticle,
+  fetchPv,
+  createArticle,
+  updateArticle,
+};

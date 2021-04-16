@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { fetchList } from "@/api/article";
+import $article from "@/api/article";
 import Sortable from "sortablejs";
 
 export default {
@@ -93,7 +93,7 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true;
-      const { data } = await fetchList(this.listQuery);
+      const { data } = await $article.fetchList(this.listQuery);
       this.list = data.items;
       this.total = data.total;
       this.listLoading = false;

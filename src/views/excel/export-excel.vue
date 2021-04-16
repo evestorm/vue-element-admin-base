@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { fetchList } from "@/api/article";
+import $article from "@/api/article";
 import { parseTime } from "@/utils";
 // options components
 import FilenameOption from "./components/FilenameOption";
@@ -68,7 +68,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true;
-      fetchList().then(response => {
+      $article.fetchList().then(response => {
         this.list = response.data.items;
         this.listLoading = false;
       });

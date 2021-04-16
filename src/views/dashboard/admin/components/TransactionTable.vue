@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { transactionList } from "@/api/remote-search";
+import $search from "@/api/remote-search";
 
 export default {
   filters: {
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     fetchData() {
-      transactionList().then(response => {
+      $search.transactionList().then(response => {
         this.list = response.data.items.slice(0, 8);
       });
     },

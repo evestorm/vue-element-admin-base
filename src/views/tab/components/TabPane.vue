@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { fetchList } from "@/api/article";
+import $article from "@/api/article";
 
 export default {
   filters: {
@@ -86,7 +86,7 @@ export default {
     getList() {
       this.loading = true;
       this.$emit("create"); // for test
-      fetchList(this.listQuery).then(response => {
+      $article.fetchList(this.listQuery).then(response => {
         this.list = response.data.items;
         this.loading = false;
       });

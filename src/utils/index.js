@@ -285,6 +285,29 @@ export function objectMerge(target, source) {
 }
 
 /**
+ * 这只是一个简单的版本的深拷贝
+ * 有很多边界情况的bug
+ * 如果你想用一个完美的深拷贝,使用 lodash 的 _.cloneDeep
+ * @param {Object} source
+ * @returns {Object}
+ */
+export function deepClone(source) {
+  if (!source && typeof source !== "object") {
+    throw new Error("error arguments", "deepClone");
+  }
+
+  const targetObj = source.constructor === Array ? [] : {};
+  Object.keys(source).forEach(keys => {
+    if (source[keys] && typeof source[keys] === "object") {
+      targetObj[keys] = deepClone(source[keys]);
+    } else {
+      targetObj[keys] = source[keys];
+    }
+  });
+  return targetObj;
+}
+
+/**
  * ! ---------------------- DOM 相关 ----------------------
  */
 

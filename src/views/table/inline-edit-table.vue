@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { fetchList } from "@/api/article";
+import $article from "@/api/article";
 
 export default {
   name: "InlineEditTable",
@@ -84,7 +84,7 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true;
-      const { data } = await fetchList(this.listQuery);
+      const { data } = await $article.fetchList(this.listQuery);
       const items = data.items;
       this.list = items.map(v => {
         this.$set(v, "edit", false); // https://vuejs.org/v2/guide/reactivity.html

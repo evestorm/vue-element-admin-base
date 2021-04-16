@@ -1,24 +1,27 @@
 import request from "@/utils/request";
 
-export function login(data) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/user/login`,
-    method: "post",
-    data,
-  });
-}
+// http api
+const urlLists = {
+  /**
+   * ! ---------------------- 用户登录 ----------------------
+   */
+  login: `${process.env.VUE_APP_MOCK_PREFIX}/user/login`, // 登录
+  getInfo: `${process.env.VUE_APP_MOCK_PREFIX}/user/info`, // 获取用户信息
+  logout: `${process.env.VUE_APP_MOCK_PREFIX}/user/logout`, // 登出
+};
 
-export function getInfo(token) {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/user/info`,
-    method: "get",
-    params: { token },
-  });
-}
+const login = params => {
+  return request.post(urlLists.login, params);
+};
+const getInfo = (params = { token: "" }) => {
+  return request.get(urlLists.getInfo, params);
+};
+const logout = (params = {}) => {
+  return request.post(urlLists.logout, params);
+};
 
-export function logout() {
-  return request({
-    url: `${process.env.VUE_APP_MOCK_PREFIX}/user/logout`,
-    method: "post",
-  });
-}
+export default {
+  login,
+  getInfo,
+  logout,
+};
