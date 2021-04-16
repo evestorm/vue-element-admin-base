@@ -149,4 +149,10 @@ npm i moment
 
 ### UI 样式覆盖
 
+#### 侧边栏
+
 侧边栏样式覆盖见：`src/styles/variables.scss` 。
+
+#### 通用快捷类
+
+见 `src/styles/index.scss`

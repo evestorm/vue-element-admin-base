@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 @click="init">moment用法</h1>
+    <h1 class="text-primary" @click="init">moment用法</h1>
     <h2>moment文档（中文）</h2>
     <a target="_blank" :href="link">{{ link }}</a>
     <h2>使用示例</h2>
