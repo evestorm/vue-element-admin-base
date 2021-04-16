@@ -75,7 +75,7 @@ module.exports = {
 
 webstorm 关于如何配置 prettier 的链接：
 
-https://www.jetbrains.com/help/webstorm/prettier.html
+<https://www.jetbrains.com/help/webstorm/prettier.html>
 
 1. 安装 prettier 依赖
 2. 安装 prettier 的 webstorm 插件
@@ -84,13 +84,13 @@ https://www.jetbrains.com/help/webstorm/prettier.html
 
 如果你不想使用 prettier 的默认配置，而是想使用第三方配置或自定义的配置，其配置文件名建议是：prettier.config.js，而 .prettierrc.js 这样的文件则是不可信的，具体 issue 见如下地址：
 
-https://youtrack.jetbrains.com/issue/WEB-35472
+<https://youtrack.jetbrains.com/issue/WEB-35472>
 
 好了，如果我现在已经有了这么一个文件名称为：prettier.config.js 的配置文件，该如何让 webstorm 应用该配置？
 
 1. 打开文件 → 设置 → 工具 →File Watcher
 2. 点击 +，选择 prettier
-3. 没有 prettier 的，需要自行配置 prettier ：文档见 https://prettier.io/docs/en/webstorm.html#running-prettier-on-save-using-file-watcher 配置截图：
+3. 没有 prettier 的，需要自行配置 prettier ：文档见 <https://prettier.io/docs/en/webstorm.html#running-prettier-on-save-using-file-watcher> 配置截图：
    ![webstorm-prettier-config](./images/webstorm-prettier-config.png)
 4. 一般来说，完全不需要改动配置，直接确定即可
 5. 打开文件 → 设置 → 快捷键，查看“prettier”的快捷键是什么：![webstorm-prettier-config](./images/webstorm-prettier-config.png)
@@ -145,4 +145,8 @@ npm i moment
 
 ### request.js 封装
 
-对原本 request.js 方法进行二次封装，添加 ``get``、`post`、`put` 和 `delete` 方法方便请求。
+对原本 request.js 方法进行二次封装，添加 `get`、`post`、`put` 和 `delete` 方法方便请求。
+
+### UI 样式覆盖
+
+侧边栏样式覆盖见：`src/styles/variables.scss` 。

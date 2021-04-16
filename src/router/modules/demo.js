@@ -2,7 +2,7 @@
 
 import Layout from "@/layout";
 
-const componentsRouter = {
+const demoRouter = {
   path: "/demo",
   component: Layout,
   redirect: "noRedirect",
@@ -14,7 +14,7 @@ const componentsRouter = {
   children: [
     {
       path: "moment",
-      component: () => import("@/views/demo/moment/moment"),
+      component: () => import("@/views/demo/moment/moment.vue"),
       name: "Demo",
       meta: { title: "Demo" },
     },
@@ -27,4 +27,4 @@ const componentsRouter = {
   ],
 };
 
-export default componentsRouter;
+export default demoRouter;

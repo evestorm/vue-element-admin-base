@@ -26,7 +26,7 @@ export default {
   },
   watch: {
     defaultTheme: {
-      handler: function (val, oldVal) {
+      handler: function (val) {
         this.theme = val;
       },
       immediate: true,
@@ -165,8 +165,8 @@ export default {
 }
 
 .theme-picker .el-color-picker__trigger {
-  height: 26px !important;
   width: 26px !important;
+  height: 26px !important;
   padding: 2px;
 }
 
