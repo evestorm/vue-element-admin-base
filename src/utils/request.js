@@ -129,6 +129,7 @@ request.get = (url, params, baseURL = base) => {
   return service.get(url, { params, baseURL });
 };
 request.post = (url, params, baseURL = base) => {
+  // service.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded;";
   return service.post(
     url,
     // mock环境下，直接传data: params 的形式

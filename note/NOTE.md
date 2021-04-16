@@ -142,3 +142,7 @@ npm i moment
 ### utils/index.js 文件
 
 加入了一些自己常见的方法，挂载到了 `Vue.prototype` 上，可以通过 `this.$utils.xxx` 来使用它们。
+
+### request.js 封装
+
+对原本 request.js 方法进行二次封装，添加 ``get``、`post`、`put` 和 `delete` 方法方便请求。
