@@ -375,7 +375,7 @@ export function hideElement(...el) {
  * @param {Element} el 元素
  * @example getScrollPosition(); // {x: 0, y: 200}
  */
-export function getScrollPosition(el = windows) {
+export function getScrollPosition(el = window) {
   return {
     x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
     y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop,

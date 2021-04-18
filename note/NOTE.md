@@ -151,6 +151,10 @@ npm i moment
 
 对原本 request.js 方法进行二次封装，添加 `get`、`post`、`put` 和 `delete` 方法方便请求。
 
+## enum 枚举
+
+见 `utils/enum` 文件夹。
+
 ### UI 样式覆盖
 
 #### 侧边栏
