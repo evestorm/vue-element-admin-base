@@ -2,7 +2,7 @@
   <div class="navbar">
     <!-- 顶部导航栏的汉堡菜单，用来隐藏和显示侧边栏 -->
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-    <!-- 首页/Dashboard -->
+    <!-- 首页/Home -->
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <!-- 右侧菜单 -->
     <div class="right-menu">

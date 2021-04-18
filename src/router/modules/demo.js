@@ -6,7 +6,7 @@ const demoRouter = {
   path: "/demo",
   component: Layout,
   redirect: "noRedirect",
-  name: "Demo", // 组件.vue 文件的首字母大写，驼峰命名
+  name: "示例", // 组件.vue 文件的首字母大写，驼峰命名
   meta: {
     title: "Demo",
     icon: "component",

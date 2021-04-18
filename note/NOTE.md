@@ -71,6 +71,10 @@ module.exports = {
 
 此配置可以让使用 VSCode 的人安装相关插件提高开发效率。
 
+### snippet 在线生成
+
+网站：<https://snippet-generator.app/>
+
 ## webstorm 相关配置
 
 webstorm 关于如何配置 prettier 的链接：

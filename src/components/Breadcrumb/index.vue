@@ -46,9 +46,9 @@ export default {
       // }]
       const first = matched[0];
 
-      // 如果不是，就往后拼接 Dashboard/Guide | Dashboard/Permission/Page Permission
+      // 如果不是，就往后拼接 Home/Guide | Home/Permission/Page Permission
       if (!this.isDashboard(first)) {
-        matched = [{ path: "/dashboard", meta: { title: "首页" } }].concat(matched);
+        matched = [{ path: "/home", meta: { title: "首页" } }].concat(matched);
       }
 
       // 如果存在meta且meta中有title，且meta中的breadcrumb不为false
@@ -62,7 +62,7 @@ export default {
       if (!name) {
         return false;
       }
-      return name.trim().toLocaleLowerCase() === "Dashboard".toLocaleLowerCase();
+      return name.trim().toLocaleLowerCase() === "Home".toLocaleLowerCase();
     },
     /**
      * @description 让面包屑支持:id的方式
@@ -90,7 +90,7 @@ export default {
       }
 
       // 没有就
-      // path: "/dashboard"
+      // path: "/home"
       this.$router.push(this.pathCompile(path));
     },
   },
@@ -100,9 +100,9 @@ export default {
 <style lang="scss" scoped>
 .app-breadcrumb.el-breadcrumb {
   display: inline-block;
+  margin-left: 8px;
   font-size: 14px;
   line-height: 50px;
-  margin-left: 8px;
 
   .no-redirect {
     color: #97a8be;

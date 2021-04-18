@@ -24,12 +24,12 @@ const roles = [
     routes: [
       {
         path: "",
-        redirect: "dashboard",
+        redirect: "home",
         children: [
           {
-            path: "dashboard",
-            name: "Dashboard",
-            meta: { title: "dashboard", icon: "dashboard" },
+            path: "home",
+            name: "Home",
+            meta: { title: "首页", icon: "dashboard" },
           },
         ],
       },

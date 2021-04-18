@@ -4,7 +4,7 @@
 
 基于 [PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 的后台前端继承解决方案。
 
-文档：https://panjiachen.github.io/vue-element-admin-site/zh/guide/
+文档：<https://panjiachen.github.io/vue-element-admin-site/zh/guide/>
 
 ## 安装与开发
 
@@ -90,3 +90,8 @@ npm run lint -- --fix
 ## 笔记
 
 项目笔记点击 [此处](./note/NOTE.md) 查看。
+
+## 项目编写要求
+
+不管组件还是页面，起名格式为：`error-log.vue` ，即单词之间 `-` 隔开。新建完毕后输入 `vue` 按 tab 回车生产 snippet 模板。
+并将 `script` 标签内的 js 放入和组件名相同的 js 文件中。scss 放入和组件名相同的 scss 文件中。

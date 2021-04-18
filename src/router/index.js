@@ -7,11 +7,11 @@ Vue.use(Router);
 import Layout from "@/layout";
 
 /* Router Modules */
-import componentsRouter from "./modules/components"; // 组件二级路由
-import chartsRouter from "./modules/charts"; // 图表二级路由
-import tableRouter from "./modules/table"; // 表格二级路由
-import nestedRouter from "./modules/nested"; // 嵌套多级路由
-import demoRouter from "./modules/demo"; // 各种demo使用
+import componentsRouter from "@/router/modules/components"; // 组件二级路由
+import chartsRouter from "@/router/modules/charts"; // 图表二级路由
+import tableRouter from "@/router/modules/table"; // 表格二级路由
+import nestedRouter from "@/router/modules/nested"; // 嵌套多级路由
+import demoRouter from "@/router/modules/demo"; // 各种demo使用
 
 /**
  * 子菜单 sub-menu 只出现在 children.length >= 1
@@ -78,12 +78,12 @@ export const constantRoutes = [
   {
     path: "/",
     component: Layout,
-    redirect: "/dashboard",
+    redirect: "/home",
     children: [
       {
-        path: "dashboard",
-        component: () => import("@/views/dashboard/index"),
-        name: "Dashboard",
+        path: "home",
+        component: () => import("@/views/home/home.vue"),
+        name: "Home",
         meta: { title: "首页", icon: "dashboard", affix: true },
       },
     ],
