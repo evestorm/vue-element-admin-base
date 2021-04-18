@@ -18,7 +18,8 @@ const mutations = {
   // 添加缓存视图
   ADD_CACHED_VIEW: (state, view) => {
     if (state.cachedViews.includes(view.name)) return;
-    if (!view.meta.noCache) {
+    // route 路由的配置 noCache 为 false 并且 环境变量不等于 development 时，才缓存（避免 npm run dev 时更新文件，页面不刷新问题）
+    if (!view.meta.noCache && process.env.NODE_ENV !== "development") {
       state.cachedViews.push(view.name);
     }
   },

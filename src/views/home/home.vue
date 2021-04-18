@@ -1,26 +1,17 @@
 <!-- home -->
 <template>
-  <div>{{ title }}</div>
+  <div>
+    <h1>{{ title }}</h1>
+    <!-- vuex->demo下的getters -->
+    <div>{{ getName }}</div>
+    <!-- 全局 getters 中的 token -->
+    <div>{{ token }}</div>
+    <!-- 组件 -->
+    <sub-comp></sub-comp>
+  </div>
 </template>
 
-<script src="./home.js">
-export default {
-  name: 'Home',
-  data() {
-    return {
-      title: '标题',
-    };
-  },
-  // 生命周期 - 创建完成（访问当前this实例）
-  created() {
-
-  },
-  // 生命周期 - 挂载完成（访问DOM元素）
-  mounted() {
-
-  }
-}
-</script>
+<script src="./home.js"></script>
 <style lang="scss" scoped>
 @import "./home.scss"; // 引入scss类
 </style>

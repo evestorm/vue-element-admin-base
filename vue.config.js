@@ -33,6 +33,8 @@ module.exports = {
   devServer: {
     port: port,
     open: true,
+    /* 设置为0.0.0.0则所有的地址均能访问 */
+    host: "0.0.0.0",
     overlay: {
       warnings: false,
       errors: true,
