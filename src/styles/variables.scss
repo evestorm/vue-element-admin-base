@@ -1,4 +1,4 @@
-// base color
+// 基础色
 $blue: #324157;
 $light-blue: #3a71a8;
 $red: #c03639;
@@ -8,18 +8,66 @@ $tiffany: #4ab7bd;
 $yellow: #fec171;
 $panGreen: #30b08f;
 
-// sidebar
-$menuText: #bfcbd9;
-$menuActiveText: #409eff;
-$subMenuActiveText: #f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+// 自定义变量
 
-$menuBg: #304156;
-$menuHover: #263445;
+// 主题色
+$bgColor: #f4f4f4; // 背景色
+$fontColor: #333; // 常规字体色
 
-$subMenuBg: #1f2d3d;
-$subMenuHover: #001528;
+// 导航栏
+$hamburgerBg: #0959de; // TODO：汉堡菜单背景色 （暂时没用过）
+$hamburgerBgHover: #0959de; // TODO：汉堡菜单悬停色（暂时没用过）
 
-$sideBarWidth: 210px;
+$tagBgActive: rgba(255, 255, 255, 0.7);
+$tagFontColor: #0959de;
+
+$navBgColor: #fff; // 导航栏背景色
+$navRightMenuItemFontColor: #5a5e66; // 右侧菜单字体色
+$navRightMenuDropdownBorderColor: #4ba2ff; // 右侧菜单边框色
+$navRightMenuDropdownBgColor: #56aaff; // 右侧菜单背景色
+$navRightMenuDropdownFontColor: #fff; // 右侧菜单下拉列表字体色
+
+// 表格
+$tableBgColor: #fff;
+
+// 消息弹窗
+$messageBoxBorderColor: #1565b8;
+$messageBoxBtnBorderColor: #2580eb;
+$messageBoxBtnBorderColorActive: #0b3d72;
+
+// 侧边栏
+$logoBg: rgb(48, 65, 86); // 侧边栏 logo 背景色
+$menuText: rgb(191, 203, 217); // 菜单字体normal颜色
+$menuHoverText: #000; // 菜单字体hover颜色
+$menuActiveText: #000; // 菜单字体active颜色
+
+$menuBg: rgb(48, 65, 86); // 侧边栏菜单normal背景色
+$menuHoverBg: #009696; // 侧边栏菜单hover背景色
+$menuActiveBg: #0ff; // 侧边栏菜单active背景色
+$menuBorderBg: #000; // 侧边栏菜单右侧边框颜色
+
+$subMenuText: $menuText; // 子菜单字体normal颜色
+$subMenuParentActiveText: #fff; // 子菜单的外层父菜单的字体active颜色
+$subMenuHoverText: $menuHoverText; // 子菜单字体hover颜色
+$subMenuActiveText: $menuActiveText; // 子菜单字体active颜色 https://github.com/ElemeFE/element/issues/12951
+
+$subMenuBg: #1f2d3d; // 子菜单normal背景色
+$subMenuHoverBg: $menuHoverBg; // 子菜单hover背景色
+$subMenuActiveBg: $menuActiveBg; // 子菜单active背景色
+
+$sideBarWidth: 300px; // 侧边栏宽度
+
+// switch 开关样式
+$switchBg: #8b8b8b;
+$switchActiveBg: #0a75ff;
+
+$sw-xs: 0;
+$sw-sm: 576px;
+$sw-md: 768px;
+$sw-lg: 992px;
+$sw-xl: 1200px;
+$sw-xxl: 1400px;
+$sw-xxxl: 1920px;
 
 // the :export directive is the magic sauce for webpack
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
@@ -28,8 +76,10 @@ $sideBarWidth: 210px;
   menuActiveText: $menuActiveText;
   subMenuActiveText: $subMenuActiveText;
   menuBg: $menuBg;
-  menuHover: $menuHover;
+  menuHover: $menuHoverBg;
   subMenuBg: $subMenuBg;
-  subMenuHover: $subMenuHover;
+  subMenuHover: $subMenuHoverBg;
   sideBarWidth: $sideBarWidth;
+  switchBg: $switchBg;
+  switchActiveBg: $switchActiveBg;
 }

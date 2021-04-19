@@ -82,11 +82,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/variables.scss";
+
 .navbar {
   position: relative;
   height: 50px;
   overflow: hidden;
-  background: #fff;
+  background: $navBgColor;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
