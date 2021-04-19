@@ -52,6 +52,7 @@ $subMenuHoverText: $menuHoverText; // 子菜单字体hover颜色
 $subMenuActiveText: $menuActiveText; // 子菜单字体active颜色 https://github.com/ElemeFE/element/issues/12951
 
 $subMenuBg: #1f2d3d; // 子菜单normal背景色
+$subMenuParentActiveBg: #000; // 子菜单高亮状态下，父菜单背景色
 $subMenuHoverBg: $menuHoverBg; // 子菜单hover背景色
 $subMenuActiveBg: $menuActiveBg; // 子菜单active背景色
 
