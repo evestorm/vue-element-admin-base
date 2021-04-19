@@ -1,7 +1,7 @@
 <template>
   <div :class="{ 'has-logo': showLogo }">
     <logo v-if="showLogo" :collapse="isCollapse" />
-    <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-scrollbar wrap-class="scrollbar-wrapper" :style="{ paddingTop: isCollapse ? '0' : '40px' }">
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
@@ -49,3 +49,40 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/styles/variables.scss";
+
+::v-deep {
+  .el-scrollbar {
+    padding-top: 40px;
+    transition: all 0.5s ease-in-out;
+
+    .scrollbar-wrapper {
+      .el-scrollbar__view {
+        position: relative;
+        // padding-bottom: 200px !important;
+        // background-color: $menuBg;
+
+        & > * {
+          z-index: 0;
+        }
+
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 1;
+          width: 100%;
+          height: 120px;
+          background-image: url("~@/assets/sidebar/sidebar-bg.png");
+          background-position: center bottom;
+          background-repeat: no-repeat;
+          background-size: contain;
+          // content: "";
+        }
+      }
+    }
+  }
+}
+</style>

@@ -16,7 +16,7 @@
     height: 100%;
     overflow: hidden;
     font-size: 0;
-    background-color: $menuBg;
+    background: $menuBg;
     transition: width 0.28s;
 
     // reset element-ui css
@@ -89,7 +89,7 @@
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        color: $subMenuHoverText;
+        color: $subMenuHoverText !important;
         background-color: $subMenuHoverBg !important;
       }
     }
@@ -106,7 +106,7 @@
       background-color: $subMenuBg !important;
 
       &:hover {
-        color: $subMenuHoverText;
+        color: $subMenuHoverText !important;
         background-color: $subMenuHoverBg !important;
       }
 
@@ -272,4 +272,8 @@
   &.is-active {
     background-color: $subMenuActiveBg;
   }
+}
+
+.el-submenu__title i {
+  color: #fff;
 }
