@@ -273,3 +273,8 @@
     background-color: $subMenuActiveBg !important;
   }
 }
+
+// 二级菜单的下拉三角箭头
+.el-submenu__title i {
+  color: #fff;
+}
