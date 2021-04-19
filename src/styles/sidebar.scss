@@ -13,7 +13,7 @@
     left: 0;
     z-index: 1001;
     width: $sideBarWidth !important;
-    height: calc(100vh);
+    height: 100%;
     overflow: hidden;
     font-size: 0;
     background-color: $menuBg;
@@ -94,8 +94,10 @@
       }
     }
 
+    // 子菜单高亮，父菜单样式
     .is-active > .el-submenu__title {
       color: $subMenuParentActiveText !important;
+      background-color: $subMenuBg !important;
     }
 
     & .nest-menu .el-submenu > .el-submenu__title,
@@ -227,6 +229,12 @@
       color: $menuHoverText !important;
       // you can use $subMenuHover
       background-color: $menuHoverBg !important;
+    }
+
+    // 收起侧边栏成窄侧边栏后，高亮子菜单样式
+    &.is-active {
+      color: $menuActiveText !important;
+      background-color: $menuActiveBg !important;
     }
   }
 

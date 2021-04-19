@@ -1,20 +1,23 @@
 <template>
-  <div class="sidebar-logo-container" :class="{ collapse: collapse }">
+  <div class="sidebar-logo-container" :class="{ collapse: collapse, 'no-bg': collapse }">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
-        <!-- <h1 v-else class="sidebar-title">{{ title }} </h1> -->
+        <!-- 折叠侧边栏后只显示logo -->
+        <img :src="logoImg" class="logo-img" />
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
-        <!-- <h1 class="sidebar-title">{{ title }} </h1> -->
+        <img :src="logoImg" class="logo-img" />
+        <img :src="logoTitle" class="logo-title" />
       </router-link>
     </transition>
   </div>
 </template>
 
 <script>
-import logo from "@/assets/logo.png";
+import logoImg from "@/assets/logo/logo-img.png";
+import logoTitle from "@/assets/logo/logo-title.png";
+import logoBg from "@/assets/logo/logo-bg.png";
+
 export default {
   name: "SidebarLogo",
   props: {
@@ -26,7 +29,9 @@ export default {
   data() {
     return {
       title: "司机门户后台管理",
-      logo: logo,
+      logoImg,
+      logoTitle,
+      logoBg,
     };
   },
 };
@@ -52,10 +57,32 @@ export default {
   // line-height: 50px;
   text-align: center;
   background: $logoBg;
+  background-image: url("~@/assets/logo/logo-bg.png");
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &.no-bg {
+    background: none;
+  }
 
   & .sidebar-logo-link {
+    display: flex !important;
     width: 100%;
-    height: 100%;
+    height: 54px;
+    justify-content: center !important;
+    align-items: center !important;
+
+    & .logo-img {
+      width: 34px;
+      height: 35px;
+    }
+
+    & .logo-title {
+      width: 221px;
+      height: 27px;
+      margin-left: 10px;
+    }
 
     & .sidebar-logo {
       width: 100%;
