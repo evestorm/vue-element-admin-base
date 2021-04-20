@@ -78,44 +78,7 @@
       font-weight: 400;
       line-height: 66px;
       color: $menuText;
-
-      // &.is-active {
-      //   color: $menuActiveText !important;
-      //   background: $menuActiveBg !important;
-      //   border-right: 4px solid $menuBorderBg;
-      // }
     }
-
-    // menu hover
-    // .submenu-title-noDropdown,
-    // .el-submenu__title {
-    //   &:hover {
-    //     color: $subMenuHoverText !important;
-    //     background-color: $subMenuHoverBg !important;
-    //   }
-    // }
-
-    // 子菜单高亮，父菜单样式
-    // .is-active > .el-submenu__title {
-    //   color: $subMenuParentActiveText !important;
-    //   background-color: $subMenuBg !important;
-    // }
-
-    // & .nest-menu .el-submenu > .el-submenu__title,
-    // & .el-submenu .el-menu-item {
-    //   min-width: $sideBarWidth !important;
-    //   background-color: $subMenuBg !important;
-
-    //   &:hover {
-    //     color: $subMenuHoverText !important;
-    //     background-color: $subMenuHoverBg !important;
-    //   }
-
-    //   &.is-active {
-    //     color: $subMenuActiveText !important;
-    //     background-color: $subMenuActiveBg !important;
-    //   }
-    // }
   }
 
   .hideSidebar {
@@ -259,27 +222,6 @@
   }
 }
 
-// sw:新增
-// #app .sidebar-container .submenu-title-noDropdown:hover,
-// #app .sidebar-container .el-submenu__title:hover {
-//   color: $menuHoverText !important;
-//   background-color: $menuHoverBg !important;
-// }
-
-// 二级菜单颜色自定义
-// #app .sidebar-container .el-submenu .el-menu-item {
-//   background-color: $subMenuBg !important;
-
-//   &.is-active {
-//     background-color: $subMenuActiveBg !important;
-//   }
-// }
-
-// 二级菜单的下拉三角箭头
-.el-submenu__title i {
-  color: #fff;
-}
-
 // 一个完整 ul 结构
 .el-menu {
   width: 100% !important;
@@ -291,7 +233,7 @@
   .el-menu-item.submenu-title-noDropdown {
     height: 66px;
     font-family: Microsoft YaHei;
-    font-size: 20px;
+    font-size: 16px !important;
     font-weight: 400;
     line-height: 66px;
     color: $menuText;
@@ -321,10 +263,12 @@
   .el-submenu {
     // 顶级菜单标题
     .el-submenu__title {
+      font-size: 16px;
       // 未展开，子菜单未选中的状态
       color: $subMenuText !important;
       background-color: $menuBg !important;
 
+      // 二级菜单的下拉三角箭头
       i {
         color: $subMenuText;
       }
@@ -353,7 +297,7 @@
   .nest-menu {
     // 如果嵌套菜单下还有嵌套菜单，则所有子菜单默认背景黑色
     .el-submenu {
-      .el-submenu__title {
+      & > .el-submenu__title {
         color: $subMenuText !important;
         background-color: $subMenuBg !important;
 
@@ -364,7 +308,7 @@
 
       // 选中嵌套菜单，上层菜单高亮
       &.is-active {
-        .el-submenu__title {
+        & > .el-submenu__title {
           color: $subMenuText !important;
           background-color: $subMenuParentActiveBg !important;
 
@@ -376,6 +320,7 @@
     }
 
     .el-menu-item {
+      font-size: 16px !important;
       color: $menuText !important;
       background: $subMenuBg !important;
       // color: black !important;
