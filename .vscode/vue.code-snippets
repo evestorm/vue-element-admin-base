@@ -37,7 +37,7 @@
       "import SubComp from \"@/views/home/components/sub-comp/sub-comp.vue\";",
       "",
       "export default {",
-      "  name: \"Home\",",
+      "  name: \"${TM_FILENAME_BASE}\",",
       "  data() {",
       "    return {",
       "      title: \"标题\",",
