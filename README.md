@@ -97,5 +97,117 @@ npm run lint -- --fix
 
 ## 项目编写要求
 
-不管组件还是页面，起名格式为：`error-log.vue` ，即单词之间 `-` 隔开。新建完毕后输入 `vue` 按 tab 回车生成 snippet 模板。
+### 页面 & 组件
+
+起名格式举例：
+
+错误日志冶炼 - `error-log.vue`
+
+单词之间 `-` 隔开。新建 vue 文件完毕后输入 `vue` 按 tab 回车生成 snippet 模板。
 并将 `script` 标签内的 js 放入和组件名相同的 js 文件中。scss 放入和组件名相同的 scss 文件中。
+
+> error-log.vue
+
+```html
+<template>
+  <div class="app-container error-log">
+    <!-- 子组件 -->
+    <sub-comp></sub-comp>
+  </div>
+</template>
+
+<script src="./error-log.js"></script>
+<style lang="scss" scoped>
+  @import "./error-log.scss"; // 引入scss类
+</style>
+```
+
+> error-log.js
+
+```js
+// 引入 vuex
+import { mapGetters, mapActions, mapMutations } from "vuex";
+// api 网络请求
+import article from "@/api/article";
+// 组件
+import SubComp from "@/components/sub-comp/sub-comp.vue";
+
+export default {
+  name: "ErrorLog",
+  data() {
+    return {
+      title: "标题",
+    };
+  },
+  // 组件
+  components: {
+    SubComp,
+  },
+  // 生命周期 - 创建完成（访问当前this实例）
+  created() {
+    console.log("create");
+  },
+  // 生命周期 - 挂载完成（访问DOM元素）
+  async mounted() {
+    this.SET_NAME("lance");
+    console.log(this.getName);
+    this.getNewsInfo({ pageIndex: 1, pageSize: 10, siteArticleType: "10" });
+    const result = await article.fetchList();
+    console.log(result);
+  },
+  // 计算属性
+  computed: {
+    ...mapGetters("demo", ["getName"]), // 「store/modules/demo 中的 getter」
+    ...mapGetters(["token"]), // 「store/getters.js 中的getter」
+  },
+  // 过滤
+  filters: {
+    parseScene: function (value) {
+      return value + "123";
+    },
+  },
+  // 方法
+  methods: {
+    ...mapMutations("demo", ["SET_NAME"]),
+    ...mapActions("demo", ["getNewsInfo"]),
+  },
+  // 监听
+  watch: {
+    name: {
+      immediate: true, // 立即执行
+      deep: true, // 深度监听
+      handler(newValue, oldValue) {
+        // TODO
+      },
+    },
+  },
+};
+```
+
+> error-log.scss
+
+```css
+/* TODO */
+```
+
+### 页面 or 组件中的 name 必填
+
+在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的
+
+**DEMO:**
+
+```js
+//router 路由声明
+{
+  path: 'create-form',
+  component: ()=>import('@/views/form/create'),
+  name: 'createForm',
+  meta: { title: 'createForm', icon: 'table' }
+}
+//路由对应的view  form/create
+export default {
+  name: 'createForm'
+}
+```
+
+一定要保证两者的名字相同，切记写重或者写错。
