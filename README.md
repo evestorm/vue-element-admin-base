@@ -101,10 +101,15 @@ npm run lint -- --fix
 
 起名格式举例：
 
-错误日志冶炼 - `error-log.vue`
+页面：错误日志 - `error-log.vue`
 
-单词之间 `-` 隔开。新建 vue 文件完毕后输入 `vue` 按 tab 回车生成 snippet 模板。
+单词之间 `-` 隔开。新建 vue 文件完毕后输入 `vue` 按 tab 回车生成 vue 页面的模板。
 并将 `script` 标签内的 js 放入和组件名相同的 js 文件中。scss 放入和组件名相同的 scss 文件中。
+
+组件：详细对话框 - `DetailDialog`
+
+首字母大写且驼峰命名，为的是与页面进行区分。vue 文件中输入 `comp` 按 tab 回车生成 vue 组件的模板。
+同时也需要对 vue 文件进行拆分。
 
 > error-log.vue
 
@@ -192,7 +197,7 @@ export default {
 
 ### 页面 or 组件中的 name 必填
 
-在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的
+在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的，推荐 name 名和页面 or 组件的文件名相同
 
 **DEMO:**
 
@@ -201,12 +206,12 @@ export default {
 {
   path: 'create-form',
   component: ()=>import('@/views/form/create'),
-  name: 'createForm',
+  name: 'create-form',
   meta: { title: 'createForm', icon: 'table' }
 }
 //路由对应的view  form/create
 export default {
-  name: 'createForm'
+  name: 'create-form'
 }
 ```
 
