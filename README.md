@@ -14,6 +14,10 @@
 npm install --registry=https://registry.npm.taobao.org
 ```
 
+### VSCode 插件安装
+
+务必安装项目根目录下 `.vscode/extensions.json` 中的所有推荐 VSCode 插件。
+
 ### 开发
 
 ```shell
@@ -93,5 +97,5 @@ npm run lint -- --fix
 
 ## 项目编写要求
 
-不管组件还是页面，起名格式为：`error-log.vue` ，即单词之间 `-` 隔开。新建完毕后输入 `vue` 按 tab 回车生产 snippet 模板。
+不管组件还是页面，起名格式为：`error-log.vue` ，即单词之间 `-` 隔开。新建完毕后输入 `vue` 按 tab 回车生成 snippet 模板。
 并将 `script` 标签内的 js 放入和组件名相同的 js 文件中。scss 放入和组件名相同的 scss 文件中。
