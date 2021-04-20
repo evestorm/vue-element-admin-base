@@ -1,6 +1,6 @@
 <!-- home -->
 <template>
-  <div>
+  <div class="app-container">
     <h1>{{ title }}</h1>
     <!-- vuex->demo下的getters -->
     <div>{{ getName }}</div>

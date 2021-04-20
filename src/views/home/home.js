@@ -1,7 +1,7 @@
 // 引入 vuex
 import { mapGetters, mapActions, mapMutations } from "vuex";
 // api 网络请求
-import $article from "@/api/article";
+import article from "@/api/article";
 // 组件
 import SubComp from "@/views/home/components/sub-comp/sub-comp.vue";
 
@@ -25,7 +25,7 @@ export default {
     this.SET_NAME("lance");
     console.log(this.getName);
     this.getNewsInfo({ pageIndex: 1, pageSize: 10, siteArticleType: "10" });
-    const result = await $article.fetchList();
+    const result = await article.fetchList();
     console.log(result);
   },
   // 计算属性
