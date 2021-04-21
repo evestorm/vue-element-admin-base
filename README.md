@@ -216,3 +216,23 @@ export default {
 ```
 
 一定要保证两者的名字相同，切记写重或者写错。
+
+### 组件位置
+
+通用组件全部放进 `src/components/` 下。页面独有组件放在页面下的 `components` 文件夹。类似：
+
+```shell
+home
+├── components # home页面特有组件放此处
+│   ├── home-comp
+│   │   ├── home-comp.js
+│   │   ├── home-comp.scss
+│   │   └── home-comp.vue
+│   └── sub-demo
+│       ├── sub-demo.js
+│       ├── sub-demo.scss
+│       └── sub-demo.vue
+├── home.js
+├── home.scss
+└── home.vue
+```
