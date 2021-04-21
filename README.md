@@ -236,3 +236,24 @@ home
 ├── home.scss
 └── home.vue
 ```
+
+### git commit
+
+提交代码时评论遵循以下要求：
+
+```shell
+feat：新功能（feature）
+fix：修补bug
+docs：文档（documentation）
+style： 格式（不影响代码运行的变动）
+refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+test：增加测试
+chore：构建过程或辅助工具的变动
+```
+
+**示例**
+
+```shell
+git commit -m 'feat: 添加首页'
+git commit -m 'fix: 修改状态不更新bug,issue编号：XXX'
+```
