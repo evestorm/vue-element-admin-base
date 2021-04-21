@@ -155,11 +155,15 @@ npm i moment
 
 见 `utils/enum` 文件夹。
 
+## websocket 封装
+
+见 `utils/socket` 文件夹。
+
 ### UI 样式覆盖
 
 #### 侧边栏
 
-侧边栏样式覆盖见：`src/styles/variables.scss` 。
+侧边栏样式覆盖见：`src/styles/variables.scss` 和 `src/styles/sidebar.scss`。
 
 #### 通用快捷类
 
