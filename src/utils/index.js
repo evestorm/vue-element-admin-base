@@ -134,6 +134,22 @@ export function createUniqueString() {
 }
 
 /**
+ * @param {string} str 截取字符串并加省略号
+ * @param {Number} length 截取长度
+ * @returns str 被截取后的字符串
+ */
+export function subText(str, length = 10) {
+  if (str.length === 0) return "";
+  return str.length > length ? str.substr(0, length) + "..." : str;
+}
+
+/**
+ * @description 金钱格式化，三位加逗号
+ * @param { number } num
+ */
+export const formatMoney = num => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+/**
  * ! ---------------------- 数组相关 ----------------------
  */
 
@@ -159,6 +175,24 @@ export function cleanArray(actual) {
  */
 export function uniqueArr(arr) {
   return Array.from(new Set(arr));
+}
+
+/**
+ * @description 返回数组中的最大值
+ * @param {Array} arr 数组
+ * @returns 最大值
+ */
+export function arrayMax(arr) {
+  return Math.max(...arr);
+}
+
+/**
+ * @description 返回数组中的最小值
+ * @param {Array} arr 数组
+ * @returns 最小值
+ */
+export function arrayMin(arr) {
+  return Math.min(...arr);
 }
 
 /**
@@ -310,6 +344,131 @@ export function deepClone(source) {
 /**
  * ! ---------------------- DOM 相关 ----------------------
  */
+
+/**
+ * @description 获取窗口可视范围的高度
+ */
+export function getClientHeight() {
+  let clientHeight = 0;
+  if (document.body.clientHeight && document.documentElement.clientHeight) {
+    clientHeight = document.body.clientHeight < document.documentElement.clientHeight ? document.body.clientHeight : document.documentElement.clientHeight;
+  } else {
+    clientHeight = document.body.clientHeight > document.documentElement.clientHeight ? document.body.clientHeight : document.documentElement.clientHeight;
+  }
+  return clientHeight;
+}
+
+/**
+ * @description 获取窗口可视范围宽度
+ */
+export function getPageViewWidth() {
+  let d = document,
+    a = d.compatMode == "BackCompat" ? d.body : d.documentElement;
+  return a.clientWidth;
+}
+
+/**
+ * @description 获取窗口宽度
+ */
+export function getPageWidth() {
+  let g = document,
+    a = g.body,
+    f = g.documentElement,
+    d = g.compatMode == "BackCompat" ? a : g.documentElement;
+  return Math.max(f.scrollWidth, a.scrollWidth, d.clientWidth);
+}
+
+/**
+ * @description 获取窗口尺寸
+ */
+export function getViewportOffset() {
+  if (window.innerWidth) {
+    return {
+      w: window.innerWidth,
+      h: window.innerHeight,
+    };
+  } else {
+    // ie8及其以下
+    if (document.compatMode === "BackCompat") {
+      // 怪异模式
+      return {
+        w: document.body.clientWidth,
+        h: document.body.clientHeight,
+      };
+    } else {
+      // 标准模式
+      return {
+        w: document.documentElement.clientWidth,
+        h: document.documentElement.clientHeight,
+      };
+    }
+  }
+}
+
+/**
+ * @description 获取滚动条距顶部高度
+ */
+export function getPageScrollTop() {
+  let a = document;
+  return a.documentElement.scrollTop || a.body.scrollTop;
+}
+
+/**
+ * @description 获取滚动条距左边的高度
+ */
+export function getPageScrollLeft() {
+  let a = document;
+  return a.documentElement.scrollLeft || a.body.scrollLeft;
+}
+
+/**
+ * @description 开启全屏
+ * @param {*} element
+ */
+
+export function launchFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+
+/**
+ * @description 关闭全屏
+ */
+export function exitFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+/**
+ * @description 检查页面底部是否可见
+ */
+export const bottomVisible = () => {
+  return document.documentElement.clientHeight + window.scrollY >= (document.documentElement.scrollHeight || document.documentElement.clientHeight);
+};
+
+/**
+ * @description 滚动到指定元素区域
+ * @param element 哪个元素
+ */
+export const smoothScroll = element => {
+  document.querySelector(element).scrollIntoView({
+    behavior: "smooth",
+  });
+};
 
 /**
  * @description 切换类
@@ -495,6 +654,137 @@ export const copyToClipboard = str => {
 };
 
 /**
+ * @description 自适应页面（rem）
+ * @param { number } width
+ */
+export function AutoResponse(width = 750) {
+  const target = document.documentElement;
+  target.clientWidth >= 600 ? (target.style.fontSize = "80px") : (target.style.fontSize = (target.clientWidth / width) * 100 + "px");
+}
+
+/**
+ * ! ---------------------- 文件相关 ----------------------
+ */
+
+/**
+ * @description 获取文件base64编码
+ * @param file
+ * @param format  指定文件格式
+ * @param size  指定文件大小(字节)
+ * @param formatMsg 格式错误提示
+ * @param sizeMsg   大小超出限制提示
+ * @returns {Promise<any>}
+ */
+export function fileToBase64String(file, format = ["jpg", "jpeg", "png", "gif"], size = 20 * 1024 * 1024, formatMsg = "文件格式不正确", sizeMsg = "文件大小超出限制") {
+  return new Promise((resolve, reject) => {
+    // 格式过滤
+    let suffix = file.type.split("/")[1].toLowerCase();
+    let inFormat = false;
+    for (let i = 0; i < format.length; i++) {
+      if (suffix === format[i]) {
+        inFormat = true;
+        break;
+      }
+    }
+    if (!inFormat) {
+      reject(formatMsg);
+    }
+    // 大小过滤
+    if (file.size > size) {
+      reject(sizeMsg);
+    }
+    // 转base64字符串
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      let res = fileReader.result;
+      resolve({ base64String: res, suffix: suffix });
+      reject("异常文件，请重新选择");
+    };
+  });
+}
+
+/**
+ * @description 转换到KB,MB,GB并保留两位小数
+ * @param { number } fileSize
+ */
+export function formatFileSize(fileSize) {
+  let temp;
+  if (fileSize < 1024) {
+    return fileSize + "B";
+  } else if (fileSize < 1024 * 1024) {
+    temp = fileSize / 1024;
+    temp = temp.toFixed(2);
+    return temp + "KB";
+  } else if (fileSize < 1024 * 1024 * 1024) {
+    temp = fileSize / (1024 * 1024);
+    temp = temp.toFixed(2);
+    return temp + "MB";
+  } else {
+    temp = fileSize / (1024 * 1024 * 1024);
+    temp = temp.toFixed(2);
+    return temp + "GB";
+  }
+}
+
+/**
+ * @description base64转file
+ * @param { base64 } base64
+ * @param { string } filename 转换后的文件名
+ */
+export const base64ToFile = (base64, filename) => {
+  let arr = base64.split(",");
+  let mime = arr[0].match(/:(.*?);/)[1];
+  let suffix = mime.split("/")[1]; // 图片后缀
+  let bstr = atob(arr[1]);
+  let n = bstr.length;
+  let u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new File([u8arr], `${filename}.${suffix}`, { type: mime });
+};
+
+/**
+ * @description base64转blob
+ * @param { base64 } base64
+ */
+export const base64ToBlob = base64 => {
+  let arr = base64.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+};
+
+/**
+ * @description blob转file
+ * @param { blob } blob
+ * @param { string } fileName
+ */
+export const blobToFile = (blob, fileName) => {
+  blob.lastModifiedDate = new Date();
+  blob.name = fileName;
+  return blob;
+};
+
+/**
+ * @description file转base64
+ * @param { * } file 图片文件
+ */
+export const fileToBase64 = file => {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function (e) {
+    return e.target.result;
+  };
+};
+
+/**
  * ! ---------------------- 防抖节流相关 ----------------------
  */
 
@@ -616,6 +906,153 @@ export function getRandomNumberFrom(min, max, range = "[]") {
 }
 
 /**
+ * ! ---------------------- 验证相关 ----------------------
+ */
+
+/**
+ * @description 匹配电子邮件地址
+ * @param {string} val 电子邮箱
+ */
+export function isEmailAddress(value) {
+  return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(value) || /w+([-+.]w+)*@w+([-.]w+)*.w+([-.]w+)*/.test(value);
+}
+
+/**
+ * @description 验证邮政编码(中国)
+ * @param {string} val 邮编
+ */
+export function isPostcode(value) {
+  return /^(0[1-7]|1[0-356]|2[0-7]|3[0-6]|4[0-7]|5[1-7]|6[1-7]|7[0-5]|8[013-6])\d{4}$/g.test(value);
+}
+
+/**
+ * @description 验证网址(支持端口和"?+参数"和"#+参数)
+ * @param {string} value 网址
+ */
+export function isRightWebsite(value) {
+  return /^(((ht|f)tps?):\/\/)?[\w-]+(\.[\w-]+)+([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/g.test(value);
+}
+
+/**
+ * @description 验证银行卡号（10到30位, 覆盖对公/私账户, 参考微信支付）
+ * @param {string} value 银行卡号
+ */
+export function isAccountNumber(value) {
+  return /^[1-9]\d{9,29}$/g.test(value);
+}
+
+/**
+ * @description 验证中文姓名
+ * @param {string} value 中文名
+ */
+export const isChineseName = value => /^(?:[\u4e00-\u9fa5·]{2,16})$/g.test(value);
+
+/**
+ * @description 验证英文名
+ * @param {string} value 英文名
+ */
+export const isEnglishName = value => /(^[a-zA-Z]{1}[a-zA-Z\s]{0,20}[a-zA-Z]{1}$)/g.test(value);
+
+/**
+ * @description 验证车牌号(新能源)
+ * @param {string} value 新能源车牌号
+ */
+export const isLicensePlateNumberNER = value =>
+  /[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-HJ-NP-Z]{1}(([0-9]{5}[DF])|([DF][A-HJ-NP-Z0-9][0-9]{4}))$/g.test(value);
+
+/**
+ * @description 验证车牌号(非新能源)
+ * @param {string} value 车牌号
+ */
+export const isLicensePlateNumberNNER = value =>
+  /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-HJ-NP-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/g.test(value);
+
+/**
+ * @description 验证车牌号(新能源+非新能源)
+ * @param {string} value 车牌号
+ */
+export const isLicensePlateNumber = value =>
+  /^(?:[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-HJ-NP-Z]{1}(?:(?:[0-9]{5}[DF])|(?:[DF](?:[A-HJ-NP-Z0-9])[0-9]{4})))|(?:[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领 A-Z]{1}[A-Z]{1}[A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9 挂学警港澳]{1})$/g.test(
+    value,
+  );
+
+/**
+ * @description 验证手机号中国(严谨), 根据工信部2019年最新公布的手机号段
+ * @param {string} value 手机号
+ */
+export const isMPStrict = value => /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/g.test(value);
+
+/**
+ * @description 验证手机号中国(宽松), 只要是13,14,15,16,17,18,19开头即可
+ * @param {string} value 手机号
+ */
+export const isMPRelaxed = value => /^(?:(?:\+|00)86)?1[3-9]\d{9}$/g.test(value);
+
+/**
+ * @description 验证邮箱
+ * @param { string } value
+ */
+export const isEmail = value => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/g.test(value);
+
+/**
+ * @description 验证座机电话(国内),如: 0341-86091234
+ * @param { string } value
+ */
+export const isLandlineTelephone = value => /\d{3}-\d{8}|\d{4}-\d{7}/g.test(value);
+
+/**
+ * @description 验证身份证号(1代,15位数字)
+ * @param { string } value
+ */
+export const isIDCardOld = value => /^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$/g.test(value);
+
+/**
+ * @description 验证身份证号(2代,18位数字),最后一位是校验位,可能为数字或字符X
+ * @param { string } value
+ */
+export const isIDCardNew = value => /^\d{6}(18|19|20)\d{2}(0\d|10|11|12)([0-2]\d|30|31)\d{3}[\dXx]$/g.test(value);
+
+/**
+ * @description 验证身份证号, 支持1/2代(15位/18位数字)
+ * @param { string } value
+ */
+export const isIDCard = value => /(^\d{8}(0\d|10|11|12)([0-2]\d|30|31)\d{3}$)|(^\d{6}(18|19|20)\d{2}(0\d|10|11|12)([0-2]\d|30|31)\d{3}(\d|X|x)$)/g.test(value);
+
+/**
+ * @description 验证护照（包含香港、澳门）
+ * @param { string } value
+ */
+export const isPassport = value => /(^[EeKkGgDdSsPpHh]\d{8}$)|(^(([Ee][a-fA-F])|([DdSsPp][Ee])|([Kk][Jj])|([Mm][Aa])|(1[45]))\d{7}$)/g.test(value);
+
+/**
+ * @description 验证小数
+ * @param { string } value
+ */
+export const isDecimal = value => /^\d+\.\d+$/g.test(value);
+
+/**
+ * @description 验证数字
+ * @param { string } value
+ */
+export const isNumber = value => /^\d{1,}$/g.test(value);
+
+/**
+ * @description 验证数字和字母组成
+ * @param { string } value
+ */
+export const isNumAndStr = value => /^[A-Za-z0-9]+$/g.test(value);
+
+/**
+ * @description 判断是否为数字且最多两位小数
+ * @param str
+ * @returns {boolean}
+ */
+export function isNum(str) {
+  const reg = /^\d+(\.\d{1,2})?$/;
+  return reg.test(str);
+}
+
+/**
  * ! ---------------------- 设备相关 ----------------------
  */
 
@@ -625,4 +1062,36 @@ export function getRandomNumberFrom(min, max, range = "[]") {
  */
 export function detectDeviceType() {
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "Mobile" : "Desktop";
+}
+
+/**
+ * @description 判断IE浏览器版本和检测是否为非IE浏览器
+ */
+export function IEVersion() {
+  var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+  var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+  var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+  var isIE11 = userAgent.indexOf("Trident") > -1 && userAgent.indexOf("rv:11.0") > -1;
+  if (isIE) {
+    var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+    reIE.test(userAgent);
+    var fIEVersion = parseFloat(RegExp["$1"]);
+    if (fIEVersion == 7) {
+      return 7;
+    } else if (fIEVersion == 8) {
+      return 8;
+    } else if (fIEVersion == 9) {
+      return 9;
+    } else if (fIEVersion == 10) {
+      return 10;
+    } else {
+      return 6; //IE版本<=7
+    }
+  } else if (isEdge) {
+    return "edge"; //edge
+  } else if (isIE11) {
+    return 11; //IE11
+  } else {
+    return -1; //不是ie浏览器
+  }
 }
