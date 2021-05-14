@@ -91,10 +91,6 @@ npm run lint -- --fix
 └── package.json               # package.json
 ```
 
-## 笔记
-
-项目笔记点击 [此处](./note/NOTE.md) 查看。
-
 ## 项目编写要求
 
 ### 页面 & 组件
