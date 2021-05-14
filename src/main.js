@@ -34,10 +34,10 @@ import storage from "@/utils/storage/index";
  * 目前MockJs用于生产环境,
  * 上线前请删除它 ! ! !
  */
-if (process.env.NODE_ENV === "production") {
-  const { mockXHR } = require("../mock");
-  mockXHR();
-}
+// if (process.env.NODE_ENV === "production") {
+//   const { mockXHR } = require("../mock");
+//   mockXHR();
+// }
 
 Vue.use(Element, {
   size: Cookies.get("size") || "medium", // set element-ui default size
