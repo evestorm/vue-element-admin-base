@@ -7,20 +7,20 @@ const routes = deepClone([...constantRoutes, ...asyncRoutes]);
 const roles = [
   {
     key: "admin",
-    name: "admin",
-    description: "Super Administrator. Have access to view all pages.",
+    name: "超管",
+    description: "超管. 有访问和操作所有页面的权限.",
     routes: routes,
   },
   {
     key: "editor",
-    name: "editor",
-    description: "Normal Editor. Can see all pages except permission page",
+    name: "管理员",
+    description: "普通管理员. 可以看到所有页面除了「配置管理员」的页面",
     routes: routes.filter(i => i.path !== "/permission"), // just a mock
   },
   {
     key: "visitor",
-    name: "visitor",
-    description: "Just a visitor. Can only see the home page and the document page",
+    name: "访客",
+    description: "只是个访客. 只能看到主页和文档页面",
     routes: [
       {
         path: "",
