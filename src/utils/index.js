@@ -1,5 +1,5 @@
-// import axios from "axios";
-// import storage from "@/utils/";
+import axios from "axios";
+import storage from "@/utils/storage/index";
 /**
  * Created by PanJiaChen on 16/11/18.
  */
@@ -772,6 +772,48 @@ export const blobToFile = (blob, fileName) => {
   blob.lastModifiedDate = new Date();
   blob.name = fileName;
   return blob;
+};
+
+/**
+ * @description 导出excel并下载
+ * @param {Blob} data 数据流
+ * @example
+ * let data = {
+      method: "post",
+      url: "url",
+      fileName: "司机注册信息.xlsx",
+      params: {
+        pageNum: 1,
+        pageSize: this.total,
+        realName: "",
+        certifiedLevel: null,
+        regTimeStart: "",
+        regTimeEnd: "",
+      },
+    };
+    exportExcel(data);
+ */
+export const exportExcel = data => {
+  axios({
+    method: data.method,
+    url: data.url,
+    data: data.params,
+    responseType: "blob",
+    headers: {
+      token: storage.getToken(),
+    },
+  })
+    .then(res => {
+      const link = document.createElement("a");
+      let blob = new Blob([res.data], { type: "application/x-excel" });
+      link.style.display = "none";
+      link.href = URL.createObjectURL(blob);
+      link.download = data.fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch(() => {});
 };
 
 /**
