@@ -2,7 +2,8 @@ import axios from "axios";
 import { MessageBox, Message } from "element-ui";
 import store from "@/store";
 import { getToken } from "@/utils/auth";
-import qs from "qs";
+// import qs from "qs";
+import appConfig from "@/config/index";
 
 // 创建 axios 实例
 const service = axios.create({
@@ -124,7 +125,7 @@ service.interceptors.response.use(
 
 // 包装请求
 let request = {};
-const base = process.env.VUE_APP_BASE_API; // url = base url + request url
+const base = appConfig.baseURL; // url = base url + request url
 request.get = (url, params, baseURL = base) => {
   return service.get(url, { params, baseURL });
 };

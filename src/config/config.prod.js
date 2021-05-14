@@ -1,6 +1,6 @@
 const appConfigDev = {
   // 测试
-  baseURL: "https://hxwlappq.huaxincem.com/",
+  baseURL: "/prod-api",
   redirectURL: "http://hafdev.hxoadev.com/portal/home/app/user.do?tid=M55",
 };
 
