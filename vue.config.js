@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const name = defaultSettings.title || "vue Element Admin"; // 页面标题
+const name = defaultSettings.title || "后台管理系统"; // 页面标题
 
 // 如果你的端口设置为80,
 // 使用管理员权限来执行命令行。
