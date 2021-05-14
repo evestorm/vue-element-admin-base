@@ -15,6 +15,7 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "vue/no-v-html": 0,
     "prettier/prettier": [
       // 上方 extends 中 "@vue/prettier" 的自定义配置
       "warn",
