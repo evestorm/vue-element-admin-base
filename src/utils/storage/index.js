@@ -1,21 +1,19 @@
-import MinCache from "./MinCache";
-
-const uStorage = new MinCache();
+import Storage from "./Storage.js";
 
 const prefix = "HX.";
 
 const storage = {
   // 设置token缓存
   setToken(token, timeout) {
-    uStorage.set(prefix + "Token", token, timeout);
+    Storage.set(prefix + "Token", token, timeout);
   },
   // 获取token
   getToken() {
-    return uStorage.get(prefix + "Token");
+    return Storage.get(prefix + "Token");
   },
   // 移除token
   removeToken() {
-    uStorage.remove(prefix + "Token");
+    Storage.remove(prefix + "Token");
   },
 
   // 设置用户信息
@@ -23,15 +21,15 @@ const storage = {
     // 设置全局用户信息
     // getApp().globalData.userInfo = userInfo;
     // getApp().globalData.LoginUserId = userInfo.id;
-    return uStorage.set(prefix + "UserInfo", userInfo);
+    return Storage.set(prefix + "UserInfo", userInfo);
   },
   // 获取用户信息
   getUserInfo() {
-    return uStorage.get(prefix + "UserInfo");
+    return Storage.get(prefix + "UserInfo");
   },
   // 移除用户信息
   removeUserInfo() {
-    uStorage.remove(prefix + "UserInfo");
+    Storage.remove(prefix + "UserInfo");
   },
 };
 

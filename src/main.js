@@ -24,8 +24,7 @@ import * as filters from "./filters"; // 全局过滤器
 import moment from "moment";
 import * as utils from "@/utils/index";
 import create from "@/utils/create.js";
-import MinCache from "@/utils/unistorage/MinCache";
-import storage from "@/utils/unistorage/index";
+import storage from "@/utils/storage/index";
 
 /**
  * 如果你不想用 mock-server
@@ -49,9 +48,6 @@ Vue.use(Element, {
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
-
-// 注册缓存器
-Vue.use(MinCache);
 
 Vue.config.productionTip = false;
 

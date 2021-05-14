@@ -51,6 +51,10 @@ export default {
       deep: true, // 深度监听
       handler(newValue, oldValue) {
         // TODO
+        console.log({
+          newValue,
+          oldValue,
+        });
       },
     },
   },
