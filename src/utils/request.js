@@ -1,9 +1,9 @@
 import axios from "axios";
-import { MessageBox, Message } from "element-ui";
-import store from "@/store";
-import { getToken } from "@/utils/auth";
+import { Message } from "element-ui";
+// import { getToken } from "@/utils/auth";
 // import qs from "qs";
 import appConfig from "@/config/index";
+import storage from "@/utils/storage/index";
 
 // 创建 axios 实例
 const service = axios.create({
@@ -55,11 +55,13 @@ service.interceptors.request.use(
     // 在发送请求之前做的事情
     // 如果 Vuex 中有token
 
-    if (store.getters.token) {
+    if (storage.getToken()) {
       // 让当前请求携带token令牌
       // ['X-Token'] 是一个自定义 headers key
       // 根据实际情况修改此key
-      config.headers["X-Token"] = getToken();
+      // config.headers["X-Token"] = getToken();
+      // token: 4db5597fac6d489bb514e37d57cf8f35
+      config.headers["token"] = storage.getToken();
     }
     return config;
   },
@@ -86,27 +88,13 @@ service.interceptors.response.use(
     const res = response.data;
 
     // if the custom code is not 20000, it is judged as an error.
-    // 如果自定义code不是20000,当错误处理。
-    if (res.code !== 20000) {
+    // 如果自定义code不是0,当错误处理。
+    if (res.code !== 0) {
       Message({
         message: res.message || "出错了",
         type: "error",
         duration: 5 * 1000,
       });
-
-      // 50008: 非法 token; 50012: 其他客户登录; 50014: 令牌过期;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // 重新登录
-        MessageBox.confirm("你已登出, 你可以退出此页面, 或者重新登录", "确认登出", {
-          confirmButtonText: "重新登录",
-          cancelButtonText: "取消",
-          type: "warning",
-        }).then(() => {
-          store.dispatch("user/resetToken").then(() => {
-            location.reload();
-          });
-        });
-      }
       return Promise.reject(new Error(res.message || "出错"));
     } else {
       return res;
@@ -140,9 +128,6 @@ request.post = (url, params, baseURL = base) => {
     process.env.VUE_APP_FLAG === "mock" ? params : params,
     { baseURL },
   );
-};
-request.put = (url, params, baseURL = base) => {
-  return service.put(url, params, { baseURL });
 };
 // axios delete 没有 params 参数，传参要么直接放url后面，要么通过 config 的 data 传入
 request.delete = (url, params, baseURL = base) => {
