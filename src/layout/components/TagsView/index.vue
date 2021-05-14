@@ -231,9 +231,9 @@ export default {
       }
 
       &.active {
-        color: #fff;
+        color: $tagFontColor;
         background-color: $tagBgActive;
-        border-color: $tagFontColor;
+        border-color: $tagBgActive;
 
         &::before {
           position: relative;
