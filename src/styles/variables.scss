@@ -18,8 +18,9 @@ $fontColor: #333; // 常规字体色
 $hamburgerBg: #0959de; // TODO：汉堡菜单背景色 （暂时没用过）
 $hamburgerBgHover: #0959de; // TODO：汉堡菜单悬停色（暂时没用过）
 
-$tagBgActive: rgba(255, 255, 255, 0.7);
-$tagFontColor: #0959de;
+// tagView
+$tagBgActive: #42b983;
+$tagFontColor: #fff;
 
 $navBgColor: #fff; // 导航栏背景色
 $navRightMenuItemFontColor: #5a5e66; // 右侧菜单字体色
@@ -36,7 +37,7 @@ $messageBoxBtnBorderColor: #2580eb;
 $messageBoxBtnBorderColorActive: #0b3d72;
 
 // 侧边栏
-$logoBg: rgb(48, 65, 86); // 侧边栏 logo 背景色
+$logoBg: #2b2f3a; // 侧边栏 logo 背景色
 $menuText: rgb(191, 203, 217); // 菜单字体normal颜色
 $menuHoverText: #000; // 菜单字体hover颜色
 $menuActiveText: #000; // 菜单字体active颜色
