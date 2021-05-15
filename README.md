@@ -253,3 +253,7 @@ chore：构建过程或辅助工具的变动
 git commit -m 'feat: 添加首页'
 git commit -m 'fix: 修改状态不更新bug,issue编号：XXX'
 ```
+
+## 登录
+
+<http://localhost:8080/#/?userId=P00025015&username=admin&hafSID=583d510187874cfdba2511ba41c2f49a>
