@@ -25,6 +25,7 @@ import moment from "moment";
 import * as utils from "@/utils/index";
 import create from "@/utils/create.js";
 import storage from "@/utils/storage/index";
+import enums from "@/utils/enum/index";
 
 /**
  * 如果你不想用 mock-server
@@ -60,6 +61,7 @@ function prototypeEx(Vue) {
   Vue.prototype.$store = store; // vuex
   Vue.prototype.$utils = utils; // 帮助类
   Vue.prototype.$create = create; // js调用组件
+  Vue.prototype.$enums = enums; // 枚举工具类
 }
 
 // 扩展vue原型属性
