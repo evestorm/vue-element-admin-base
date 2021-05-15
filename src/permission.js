@@ -72,9 +72,7 @@ router.beforeEach(async (to, from, next) => {
     console.log(storage.getToken());
     // 没有 sid && userId && username ，检查本地是否有token
     if (storage.getToken()) {
-      // debugger;
       if (isFirst === true) {
-        // debugger;
         isFirst = false;
         // 重新赋值:
         // 保存 token
