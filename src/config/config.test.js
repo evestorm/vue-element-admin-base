@@ -1,6 +1,6 @@
 const appConfigDev = {
   // 生产
-  baseURL: "/stage-api",
+  baseURL: "https://hxwlapp.huaxincem.com/",
   redirectURL: "http://hafdev.hxoadev.com/portal/home/app/user.do?tid=M55",
 };
 

@@ -1,121 +1,106 @@
 import $user from "@/api/user";
-import { getToken, setToken, removeToken } from "@/utils/auth";
+import { setToken } from "@/utils/auth";
+import storage from "@/utils/storage/index";
 import router, { resetRouter } from "@/router";
+import { treeForeach } from "@/utils/index";
 
 const state = {
-  token: getToken(),
-  name: "",
-  avatar: "",
-  introduction: "",
-  roles: [],
+  loginParams: {
+    sid: "",
+    userId: "",
+    userName: "",
+  }, // 登录需要的参数
+  token: storage.getToken(), // token
+  userInfo: {}, // 用户信息
+  menu: [], // 树结构菜单
+  flatMenu: [], // 拍平后的菜单
+  roles: [], // mock数据可以在 `mock/role/index.js` 中查看
 };
 
 const mutations = {
+  // 设置登录所需参数
+  SET_LOGIN_PARAMS: (state, loginParams) => {
+    state.loginParams = loginParams;
+  },
+  // 设置token
   SET_TOKEN: (state, token) => {
     state.token = token;
+    storage.setToken(token);
   },
-  SET_INTRODUCTION: (state, introduction) => {
-    state.introduction = introduction;
+  // 设置用户信息
+  SET_USER_INFO: (state, userInfo) => {
+    if (userInfo) {
+      userInfo.avatar = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif";
+    }
+    state.userInfo = userInfo;
+    storage.setUserInfo(userInfo);
   },
-  SET_NAME: (state, name) => {
-    state.name = name;
+  // 设置侧边栏菜单
+  SET_MENU: (state, menu) => {
+    state.menu = menu;
+    storage.setMenu(menu);
   },
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar;
+  // 设置扁平化后的菜单
+  SET_FLAT_MENU: (state, menus) => {
+    let flatMenu = [];
+    //  拍平菜单
+    treeForeach(menus, menu => {
+      flatMenu.push(menu);
+    });
+    state.flatMenu = flatMenu;
+    storage.setFlatMenu(flatMenu);
   },
+  // 设置用户权限
   SET_ROLES: (state, roles) => {
     state.roles = roles;
   },
 };
 
 const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo;
-    return new Promise((resolve, reject) => {
-      $user
-        .login({ username: username.trim(), password: password })
-        .then(response => {
-          const { data } = response;
-          commit("SET_TOKEN", data.token);
-          setToken(data.token);
-          resolve();
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+  // 用户登录
+  async login({ commit, state }) {
+    const { sid, userId, userName } = state.loginParams;
+    try {
+      const userData = await $user.pcLogin({ sid, userId, userName });
+      const { data } = userData;
+
+      // 保存 token
+      // 保存用户信息
+      // 保存 menu
+      commit("SET_TOKEN", data.token);
+      commit("SET_USER_INFO", data);
+      commit("SET_MENU", data.menu);
+      commit("SET_FLAT_MENU", data.menu);
+      return true;
+    } catch (e) {
+      return e;
+    }
   },
 
-  // get user info
-  getInfo({ commit, state }) {
-    return new Promise((resolve, reject) => {
-      $user
-        .getInfo({
-          token: state.token,
-        })
-        .then(response => {
-          const { data } = response;
+  // 用户登出
+  async logout({ commit, dispatch }) {
+    try {
+      commit("SET_TOKEN", "");
+      commit("SET_USER_INFO", {});
+      commit("SET_MENU", []);
+      commit("SET_FLAT_MENU", []);
 
-          if (!data) {
-            reject("Verification failed, please Login again.");
-          }
-
-          const { roles, name, avatar, introduction } = data;
-
-          // roles must be a non-empty array
-          if (!roles || roles.length <= 0) {
-            reject("getInfo: roles must be a non-null array!");
-          }
-
-          commit("SET_ROLES", roles);
-          commit("SET_NAME", name);
-          commit("SET_AVATAR", avatar);
-          commit("SET_INTRODUCTION", introduction);
-          resolve(data);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+      await dispatch("tagsView/delAllViews", null, { root: true });
+    } catch (e) {
+      return e;
+    }
   },
 
-  // user logout
-  logout({ commit, state, dispatch }) {
-    return new Promise((resolve, reject) => {
-      $user
-        .logout({
-          token: state.token,
-        })
-        .then(() => {
-          commit("SET_TOKEN", "");
-          commit("SET_ROLES", []);
-          removeToken();
-          resetRouter();
-
-          // reset visited views and cached views
-          // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-          dispatch("tagsView/delAllViews", null, { root: true });
-
-          resolve();
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
-  },
-
-  // remove token
+  // 移除token
   resetToken({ commit }) {
     return new Promise(resolve => {
       commit("SET_TOKEN", "");
       commit("SET_ROLES", []);
-      removeToken();
       resolve();
     });
   },
 
-  // dynamically modify permissions
+  // FIXME: 暂时没用到 - 动态修改权限
   async changeRoles({ commit, dispatch }, role) {
     const token = role + "-token";
 

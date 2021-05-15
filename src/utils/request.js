@@ -1,7 +1,8 @@
 import axios from "axios";
+// import { MessageBox, Message } from "element-ui";
 import { Message } from "element-ui";
+// import store from "@/store";
 // import { getToken } from "@/utils/auth";
-// import qs from "qs";
 import appConfig from "@/config/index";
 import storage from "@/utils/storage/index";
 
@@ -59,8 +60,6 @@ service.interceptors.request.use(
       // 让当前请求携带token令牌
       // ['X-Token'] 是一个自定义 headers key
       // 根据实际情况修改此key
-      // config.headers["X-Token"] = getToken();
-      // token: 4db5597fac6d489bb514e37d57cf8f35
       config.headers["token"] = storage.getToken();
     }
     return config;
@@ -87,7 +86,7 @@ service.interceptors.response.use(
   response => {
     const res = response.data;
 
-    // if the custom code is not 20000, it is judged as an error.
+    // if the custom code is not 0, it is judged as an error.
     // 如果自定义code不是0,当错误处理。
     if (res.code !== 0) {
       Message({
@@ -128,6 +127,9 @@ request.post = (url, params, baseURL = base) => {
     process.env.VUE_APP_FLAG === "mock" ? params : params,
     { baseURL },
   );
+};
+request.put = (url, params, baseURL = base) => {
+  return service.put(url, params, { baseURL });
 };
 // axios delete 没有 params 参数，传参要么直接放url后面，要么通过 config 的 data 传入
 request.delete = (url, params, baseURL = base) => {

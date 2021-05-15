@@ -344,6 +344,18 @@ export function deepClone(source) {
 }
 
 /**
+ * @description 深度优先遍历的递归实现
+ * @param {*} tree 树结构
+ * @param {*} func 回调
+ */
+export function treeForeach(tree, func) {
+  tree.forEach(data => {
+    func(data);
+    data.nodes && treeForeach(data.nodes, func); // 遍历子树
+  });
+}
+
+/**
  * ! ---------------------- DOM 相关 ----------------------
  */
 

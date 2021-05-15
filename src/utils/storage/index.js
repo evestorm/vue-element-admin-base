@@ -31,6 +31,31 @@ const storage = {
   removeUserInfo() {
     Storage.remove(prefix + "UserInfo");
   },
+
+  // 设置用户菜单
+  setMenu(menu) {
+    return Storage.set(prefix + "Menu", menu);
+  },
+  // 获取用户菜单
+  getMenu() {
+    return Storage.get(prefix + "Menu");
+  },
+  // 移除用户菜单
+  removeMenu() {
+    Storage.remove(prefix + "Menu");
+  },
+  // 设置用户菜单(flat)
+  setFlatMenu(menu) {
+    return Storage.set(prefix + "FlatMenu", menu);
+  },
+  // 获取用户菜单(flat)
+  getFlatMenu() {
+    return Storage.get(prefix + "FlatMenu");
+  },
+  // 移除用户菜单(flat)
+  removeFlatMenu() {
+    Storage.remove(prefix + "FlatMenu");
+  },
 };
 
 export default storage;
