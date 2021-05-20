@@ -90,6 +90,27 @@ export const formatMoney = s => {
   return s.replace(/^\./, "0.").toString();
 };
 
+// 格式化
+export const currency = value => {
+  if (!value) return 0;
+  return formatCurrency(value);
+};
+
+// 币格式化带 带万的
+export const currencyW = value => {
+  if (!value) return 0;
+  value /= 10000;
+  return formatCurrency(value) + "万";
+};
+
+// 百分号格式化
+export const percent = (value, fixPoint = 2, unit = "%") => {
+  if (!value) return `0.${new Array(fixPoint).fill(0).join("")}${unit}`;
+  value = (value * 100).toFixed(fixPoint);
+  let result = value.toString() + `${unit}`;
+  return result;
+};
+
 /**
  * @description 转成大写
  * @param {string} value 字符串
@@ -142,6 +163,12 @@ export const date2month = value => {
   return moment(value).format("YYYY-MM");
 };
 
+// 格式化时间
+export const parseHHmmSS = value => {
+  if (!value) return "";
+  return moment(value).format("HH:mm:ss");
+};
+
 /**
  * @description 格式化日期 + 时间
  * @param {string} value 字符串
@@ -150,6 +177,40 @@ export const date2month = value => {
 export const parseDatetime = value => {
   if (!value) return "";
   return moment(value).format("YYYY-MM-DD HH:mm");
+};
+
+/**
+ * @description 不要年份的时间
+ * @param {String} value 时间字符串
+ */
+export const parseIgnoreYearDateTime = value => {
+  if (!value) return "";
+  return moment(value).format("MM-DD HH:mm");
+};
+
+// 格式化星期
+export const parseShortWeek = value => {
+  if (!value) return "";
+  let week = moment(value).format("d");
+  if (week == "1") {
+    return "周 一";
+  }
+  if (week == "2") {
+    return "周二";
+  }
+  if (week == "3") {
+    return "周三";
+  }
+  if (week == "4") {
+    return "周四";
+  }
+  if (week == "5") {
+    return "周五";
+  }
+  if (week == "6") {
+    return "周六";
+  }
+  return "周日";
 };
 
 /**
@@ -177,4 +238,34 @@ export const formatCurrency = num => {
  */
 export const formatPhone = phone => {
   return phone.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+};
+
+/**
+ * @description 保留n位小数并格式化输出（不足的部分补0）
+ * @param {String, Number} value 数值
+ * @param {Number} n 保留位数
+ */
+export function formatFloat(value, n) {
+  let f = Math.round(value * Math.pow(10, n)) / Math.pow(10, n);
+  let s = f.toString();
+  let rs = s.indexOf(".");
+  if (rs < 0) {
+    s += ".";
+  }
+  for (let i = s.length - s.indexOf("."); i <= n; i++) {
+    s += "0";
+  }
+  return s;
+}
+
+// 首字母大写
+export const capitalize = value => {
+  if (!value) return "";
+  value = value.toString();
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};
+
+// 去除值为null
+export const delNull = value => {
+  if (value == null || value == undefined) return "";
 };
