@@ -898,7 +898,7 @@ export function debounceV(fn, delay = 500) {
  * @param {Function} fn 要执行的函数
  * @param {Number} gapTime  单位时间
  */
-export function throttleV(fn, gapTime = 500) {
+export function throttle(fn, gapTime = 500) {
   let canUse = true;
   return function () {
     if (canUse) {
