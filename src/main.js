@@ -27,19 +27,6 @@ import create from "@/utils/create.js";
 import storage from "@/utils/storage/index";
 import enums from "@/utils/enum/index";
 
-/**
- * 如果你不想用 mock-server
- * 你想使用 MockJs 模拟 api
- * 你可以执行: mockXHR()
- *
- * 目前MockJs用于生产环境,
- * 上线前请删除它 ! ! !
- */
-// if (process.env.NODE_ENV === "production") {
-//   const { mockXHR } = require("../mock");
-//   mockXHR();
-// }
-
 Vue.use(Element, {
   size: Cookies.get("size") || "medium", // set element-ui default size
   // locale: enLang, // 如果使用中文，无需设置，请删除
