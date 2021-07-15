@@ -89,7 +89,7 @@
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        color: $subMenuHoverText;
+        color: $subMenuHoverText !important;
         background-color: $subMenuHoverBg !important;
       }
     }
@@ -106,7 +106,7 @@
       background-color: $subMenuBg !important;
 
       &:hover {
-        color: $subMenuHoverText;
+        color: $subMenuHoverText !important;
         background-color: $subMenuHoverBg !important;
       }
 
@@ -267,9 +267,9 @@
 
 // 二级菜单颜色自定义
 #app .sidebar-container .el-submenu .el-menu-item {
-  background-color: $subMenuBg;
+  background-color: $subMenuBg !important;
 
   &.is-active {
-    background-color: $subMenuActiveBg;
+    background-color: $subMenuActiveBg !important;
   }
 }
