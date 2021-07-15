@@ -16,7 +16,7 @@
     height: 100%;
     overflow: hidden;
     font-size: 0;
-    background: $menuBg;
+    background-color: $menuBg;
     transition: width 0.28s;
 
     // reset element-ui css
@@ -39,7 +39,7 @@
     &.has-logo {
       .el-scrollbar {
         // height: calc(100% - 50px); // TODO: 这是减去logo的高度
-        height: calc(100% - 50px - 74px);
+        height: calc(100% - 50px);
       }
     }
 
@@ -89,7 +89,7 @@
     .submenu-title-noDropdown,
     .el-submenu__title {
       &:hover {
-        color: $subMenuHoverText !important;
+        color: $subMenuHoverText;
         background-color: $subMenuHoverBg !important;
       }
     }
@@ -106,7 +106,7 @@
       background-color: $subMenuBg !important;
 
       &:hover {
-        color: $subMenuHoverText !important;
+        color: $subMenuHoverText;
         background-color: $subMenuHoverBg !important;
       }
 
@@ -272,8 +272,4 @@
   &.is-active {
     background-color: $subMenuActiveBg;
   }
-}
-
-.el-submenu__title i {
-  color: #fff;
 }
