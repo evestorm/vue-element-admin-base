@@ -6,9 +6,8 @@ import { treeForeach } from "@/utils/index";
 
 const state = {
   loginParams: {
-    sid: "",
-    userId: "",
-    userName: "",
+    username: "",
+    password: "",
   }, // 登录需要的参数
   token: storage.getToken(), // token
   userInfo: {}, // 用户信息
@@ -44,7 +43,7 @@ const mutations = {
   SET_FLAT_MENU: (state, menus) => {
     let flatMenu = [];
     //  拍平菜单
-    treeForeach(menus, menu => {
+    treeForeach(menus, "children", menu => {
       flatMenu.push(menu);
     });
     state.flatMenu = flatMenu;
@@ -58,25 +57,34 @@ const mutations = {
 
 const actions = {
   // 用户登录
-  async login({ commit, state }) {
-    const { sid, userId, userName } = state.loginParams;
-    try {
-      const userData = await $user.pcLogin({ sid, userId, userName });
-      const { data } = userData;
-
-      // 保存 token
-      // 保存用户信息
-      // 保存 menu
-      commit("SET_TOKEN", data.token);
-      commit("SET_USER_INFO", data);
-      commit("SET_MENU", data.menu);
-      commit("SET_FLAT_MENU", data.menu);
-      return true;
-    } catch (e) {
-      return e;
+  async login({ commit }, userInfo) {
+    const { username, password } = userInfo;
+    const userData = await $user.login({ userName: username, password });
+    const [err, data] = userData;
+    if (err) {
+      return Promise.resolve([err, undefined]);
     }
+    // 保存 token
+    // 保存用户信息
+    // 保存 menu
+    commit("SET_TOKEN", data.token);
+    commit("SET_USER_INFO", data);
+    // commit("SET_MENU", data.menu);
+    // commit("SET_FLAT_MENU", data.menu);
+    return Promise.resolve([undefined, true]);
   },
+  // 获取菜单
+  async getMenu({ commit }, preload) {
+    const menu = await $user.menu({ userName: preload });
+    const [err, data] = menu;
+    if (err) {
+      return Promise.resolve([err, undefined]);
+    }
 
+    commit("SET_MENU", data.rows);
+    commit("SET_FLAT_MENU", data.rows);
+    return Promise.resolve([undefined, true]);
+  },
   // 用户登出
   async logout({ commit, dispatch }) {
     try {

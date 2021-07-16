@@ -15,6 +15,15 @@ const name = defaultSettings.title || "后台管理系统"; // 页面标题
 // port = 9527 npm run dev 或者 npm run dev --port = 9527
 const port = process.env.port || process.env.npm_config_port || 9527; // dev port
 
+const proxyTargetMap = {
+  // prod: 'http://10.248.24.118:9083/tms-facdel', // 刘天赐
+  // prod: 'http://10.248.61.27:9083/tms-facdel',
+  prod: "http://10.248.61.136:9083/tms-facdel",
+  // prod: 'http://10.248.24.118:9083/tms-facdel',
+  randy: "",
+  peter: "",
+};
+
 // 所有配置项都可以在 https://cli.vuejs.org/config/ 找到解释
 module.exports = {
   /**
@@ -39,7 +48,24 @@ module.exports = {
       warnings: false,
       errors: true,
     },
-    // before: require("./mock/mock-server.js"),
+    proxy: {
+      "/tms-facdel/beltWagon": {
+        target: "http://10.248.10.118:8130/beltWagon",
+        changeOrigin: true,
+        ws: false,
+        pathRewrite: {
+          "^/tms-facdel/beltWagon": "",
+        },
+      },
+      "/tms-facdel": {
+        target: proxyTargetMap.prod,
+        changeOrigin: true,
+        ws: false,
+        pathRewrite: {
+          "^/tms-facdel": "",
+        },
+      },
+    },
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

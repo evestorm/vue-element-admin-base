@@ -1,7 +1,6 @@
 import axios from "axios";
 import { MessageBox, Message } from "element-ui";
 import store from "@/store";
-import { getToken } from "@/utils/auth";
 // import qs from "qs";
 import appConfig from "@/config/index";
 
@@ -19,10 +18,6 @@ const service = axios.create({
         Message.warning({
           message: "授权失败，请重新登录",
         });
-        // store.commit('LOGIN_OUT');
-        // setTimeout(() => {
-        //     window.location.reload();
-        // }, 1000);
         return;
       case 403:
         Message.warning({
@@ -52,20 +47,14 @@ const service = axios.create({
 // 请求拦截器
 service.interceptors.request.use(
   config => {
-    // 在发送请求之前做的事情
-    // 如果 Vuex 中有token
-
-    if (storage.getToken()) {
-      // 让当前请求携带token令牌
-      // ['X-Token'] 是一个自定义 headers key
-      // 根据实际情况修改此key
-      config.headers["token"] = storage.getToken();
+    // 有 token ，则携带令牌
+    if (store.getters.token) {
+      config.headers.Authorization = store.getters.token;
     }
     return config;
   },
   error => {
-    // 请求出错后做的事情
-    console.log(error); // for debug
+    console.log(error);
     return Promise.reject(error);
   },
 );
@@ -79,39 +68,63 @@ service.interceptors.response.use(
 
   /**
    * 根据后端自定义code来判断响应状态
-   * 下面只是个例子
    * 你也可以通过HTTP状态码来判断
    */
   response => {
-    const res = response.data;
+    // res：后端返回的真正response
+    const rootRes = response.data;
+    const customCode = Number(rootRes.resCode || rootRes.code);
+    const msg = rootRes.msg;
 
-    // if the custom code is not 0, it is judged as an error.
-    // 如果自定义code不是0,当错误处理。
-    if (res.code !== 0) {
+    // 如果自定义 code 不是 10000 ，当错误处理
+    if (customCode !== 10000) {
       Message({
-        message: res.message || "出错了",
+        message: msg || "出错了 o(╥﹏╥)o",
         type: "error",
         duration: 5 * 1000,
       });
-      return Promise.reject(new Error(res.message || "出错"));
+
+      // 10007: 非法 token
+      if (customCode === 10007) {
+        // 重新登录
+        MessageBox.confirm("您已登出, 您可以退出此页面, 或者重新登录", "确认登出", {
+          confirmButtonText: "重新登录",
+          cancelButtonText: "取消",
+          type: "warning",
+        }).then(() => {
+          store.dispatch("user/logout").then(() => {
+            location.reload();
+          });
+        });
+      }
+      return Promise.resolve([msg, undefined]);
     } else {
-      return res;
+      return Promise.resolve([undefined, rootRes]);
     }
   },
   error => {
+    // 异常处理
     console.log("err" + error); // for debug
+    let msg = "";
+    const { code, message } = error;
+    if (code === "ECONNABORTED" || message === "Network Error") {
+      msg = "出错了 o(╥﹏╥)o，请稍后重试";
+    } else {
+      msg = error.message;
+    }
+
     Message({
-      message: error.message,
+      message: msg,
       type: "error",
       duration: 5 * 1000,
     });
-    return Promise.reject(error);
+    return Promise.resolve([error, undefined]);
   },
 );
 
 // 包装请求
 let request = {};
-const base = appConfig.baseURL; // url = base url + request url
+const base = process.env === "production" ? appConfig.baseURL : "./tms-facdel/"; // url = base url + request url
 request.get = (url, params, baseURL = base) => {
   return service.get(url, { params, baseURL });
 };

@@ -1,4 +1,4 @@
-# vue-element-admin-base
+# ADL 平台
 
 ## 介绍
 
@@ -256,4 +256,11 @@ git commit -m 'fix: 修改状态不更新bug,issue编号：XXX'
 
 ## 登录
 
-<http://localhost:8080/#/?userId=P00025015&username=admin&hafSID=583d510187874cfdba2511ba41c2f49a>
+username: admin
+password: 111111
+
+## feature
+
+1. 必须得账号登录
+
+2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改

@@ -374,13 +374,14 @@ export function objFilter(mainObject, filterFunction) {
 
 /**
  * @description 深度优先遍历的递归实现
- * @param {*} tree 树结构
+ * @param {Array} tree 树结构
+ * @param {string} field 子路由字段
  * @param {*} func 回调
  */
-export function treeForeach(tree, func) {
+export function treeForeach(tree, field, func) {
   tree.forEach(data => {
     func(data);
-    data.nodes && treeForeach(data.nodes, func); // 遍历子树
+    data[field] && treeForeach(data[field], field, func); // 遍历子树
   });
 }
 
