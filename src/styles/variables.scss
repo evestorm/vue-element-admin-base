@@ -23,7 +23,7 @@ $hamburgerBgHover: #0959de; // TODO：汉堡菜单悬停色（暂时没用过）
 // 杂色地址：https://i.imgur.com/0Ac5PXg.png
 $noise: url(https://hxtms.obs.cn-south-1.myhuaweicloud.com/adl/common-img/noise.png);
 // tagView
-$tagBgActive: #42b983;
+$tagBgActive: #316ce6;
 $tagFontColor: #fff;
 
 $navBgColor: #fff; // 导航栏背景色
@@ -41,12 +41,12 @@ $messageBoxBtnBorderColor: #2580eb;
 $messageBoxBtnBorderColorActive: #0b3d72;
 
 // 侧边栏
-$logoBg: linear-gradient(to right, rgba(26, 102, 223, 0.8), rgba(77, 140, 228, 0.8)); // 侧边栏 logo 背景色
+$logoBg: linear-gradient(to right, rgba(26, 102, 223, 0.8), rgba(52, 106, 232, 0.8)); // 侧边栏 logo 背景色
 $menuText: #fff; // 菜单字体normal颜色
 $menuHoverText: #fff; // 菜单字体hover颜色
 $menuActiveText: #fff; // 菜单字体active颜色
 
-$menuBg: linear-gradient(to bottom, rgba(46, 109, 230, 0.8), rgba(53, 103, 233, 0.8)); // 侧边栏菜单normal背景色
+$menuBg: linear-gradient(to bottom, rgba(46, 109, 230, 0.8), rgba(52, 106, 232, 0.8)); // 侧边栏菜单normal背景色
 $menuHoverBg: rgba(255, 255, 255, 0.1); // 侧边栏菜单hover背景色
 $menuActiveBg: rgba(255, 255, 255, 0.3); // 侧边栏菜单active背景色
 $menuBorderBg: transparent; // 侧边栏菜单右侧边框颜色

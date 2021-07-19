@@ -53,9 +53,9 @@ export default {
 .drag-select {
   ::v-deep {
     .sortable-ghost {
-      opacity: 0.8;
       color: #fff !important;
       background: #42b983 !important;
+      opacity: 0.8;
     }
 
     .el-tag {
