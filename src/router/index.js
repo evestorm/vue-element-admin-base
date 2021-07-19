@@ -67,6 +67,7 @@ export const constantRoutes = [
     path: "/",
     component: Layout,
     redirect: "/home",
+    code: "home",
     children: [
       {
         path: "home",
@@ -84,42 +85,36 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: "/permission",
+    path: "/system-settings",
     component: Layout,
-    redirect: "/permission/page",
-    alwaysShow: true, // will always show the root menu
-    name: "Permission",
+    redirect: "/system-settings/company-information",
+    alwaysShow: false, // will always show the root menu
+    name: "system-settings",
+    code: "systemSetting",
     meta: {
-      title: "权限",
+      title: "系统设置",
       icon: "lock",
       roles: ["admin", "editor"], // you can set roles in root nav
     },
     children: [
       {
-        path: "page",
-        component: () => import("@/views/permission/page"),
-        name: "PagePermission",
+        path: "company-information",
+        component: () => import("@/views/system-settings/company-information/company-information.vue"),
+        name: "company-information",
+        code: "companyInformation",
         meta: {
-          title: "页面权限",
+          title: "公司信息",
           roles: ["admin"], // 或者你可以只在子导航设置角色
         },
       },
       {
-        path: "directive",
-        component: () => import("@/views/permission/directive"),
-        name: "DirectivePermission",
+        path: "operation-log",
+        code: "operationLog",
+        component: () => import("@/views/system-settings/operation-log/operation-log.vue"),
+        name: "operation-log",
         meta: {
-          title: "指令权限",
+          title: "操作日志",
           // 如果不设置角色,意思是:这个页面不需要许可
-        },
-      },
-      {
-        path: "role",
-        component: () => import("@/views/permission/role"),
-        name: "RolePermission",
-        meta: {
-          title: "角色权限",
-          roles: ["admin"],
         },
       },
     ],

@@ -16,7 +16,7 @@
     height: 100%;
     overflow: hidden;
     font-size: 0;
-    background-color: $menuBg;
+    background: $menuBg, $noise;
     transition: width 0.28s;
 
     // reset element-ui css
@@ -62,7 +62,7 @@
       margin-left: -2px;
     }
 
-    // 一个完整 ul 结构
+    // 一个完整 ul 结构（废弃）
     .el-menu {
       width: 100% !important;
       height: 100%;
@@ -211,7 +211,7 @@
 .el-menu {
   width: 100% !important;
   height: 100%;
-  background-color: $menuBg;
+  background: $menuBg, $noise !important;
   border: none;
 
   // 无子菜单
@@ -222,6 +222,7 @@
     font-weight: 400;
     line-height: 66px;
     color: $menuText;
+    background: $menuBg, $noise !important;
 
     // active
     &.is-active {
@@ -251,7 +252,7 @@
       font-size: 16px;
       // 未展开，子菜单未选中的状态
       color: $subMenuText !important;
-      background-color: $menuBg !important;
+      background: rgba(0, 0, 0, 0) !important;
 
       // 二级菜单的下拉三角箭头
       i {
@@ -264,13 +265,13 @@
 
     // 展开后的容器背景色
     .el-menu {
-      background-color: $subMenuBg !important;
+      background: $subMenuBg !important;
       // background-color: orange !important;
     }
     // active某个子菜单，其父菜单样式
     &.is-active .el-submenu__title {
       color: $subMenuParentActiveText !important;
-      background-color: $subMenuParentActiveBg !important;
+      background: $subMenuParentActiveBg !important;
 
       i {
         color: $subMenuParentActiveText;
@@ -284,7 +285,7 @@
     .el-submenu {
       & > .el-submenu__title {
         color: $subMenuText !important;
-        background-color: $subMenuBg !important;
+        background: $subMenuBg !important;
 
         i {
           color: $subMenuText;
@@ -295,7 +296,7 @@
       &.is-active {
         & > .el-submenu__title {
           color: $subMenuText !important;
-          background-color: $subMenuParentActiveBg !important;
+          background: $subMenuParentActiveBg !important;
 
           i {
             color: $subMenuText;
@@ -323,7 +324,7 @@
       // hover
       &:hover {
         color: $subMenuHoverText !important;
-        background-color: $subMenuHoverBg !important;
+        background: $subMenuHoverBg !important;
         // color: pink !important;
         // background-color: lemonchiffon !important;
       }

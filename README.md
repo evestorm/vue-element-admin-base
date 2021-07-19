@@ -263,4 +263,4 @@ password: 111111
 
 1. 必须得账号登录
 
-2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
+2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 code 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改

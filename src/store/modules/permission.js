@@ -11,8 +11,8 @@ function hasPermission(roles, route) {
   const flatMenu = storage.getFlatMenu() || [];
   return (
     flatMenu.findIndex(v => {
-      // console.log(v.permisCode, route.name);
-      return v.permisCode.toLowerCase() === route.name ? route.name.toLowerCase() : "";
+      console.log(v.permisCode, route.code);
+      return v.permisCode == route.code;
     }) > -1 || route.path === "*"
   );
 }

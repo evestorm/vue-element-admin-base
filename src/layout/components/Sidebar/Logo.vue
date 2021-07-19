@@ -53,12 +53,13 @@ export default {
   overflow: hidden;
   line-height: 50px;
   text-align: center;
-  background: $logoBg;
+  // background-color: $logoBg;
+  background: $logoBg, $noise;
 
   & .sidebar-logo-link {
     display: flex !important;
     width: 100%;
-    height: 54px;
+    height: 50px;
     justify-content: center !important;
     align-items: center !important;
 
@@ -68,8 +69,8 @@ export default {
     }
 
     & .logo-title {
-      width: 160px;
-      height: 24px;
+      width: 118px;
+      height: 28px;
       margin-left: 10px;
     }
 
