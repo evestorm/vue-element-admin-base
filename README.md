@@ -16,7 +16,7 @@ npm install --registry=https://registry.npm.taobao.org
 
 ### VSCode 插件安装
 
-务必安装项目根目录下 `.vscode/extensions.json` 中的所有推荐 VSCode 插件。
+务必安装项目根目录下 `.vscode/extensions.json` 中的所有推荐 VSCode 插件。（在插件栏搜索中输入 @recommended ，把 workspace recommended 中所有推荐的都安装下来）
 
 ### 开发
 
@@ -92,6 +92,10 @@ npm run lint -- --fix
 ```
 
 ## 项目编写要求
+
+### 注释
+
+多写注释，data 下变量。
 
 ### 页面 & 组件
 
@@ -264,3 +268,5 @@ password: 111111
 1. 必须得账号登录
 
 2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
+
+3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
