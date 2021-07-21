@@ -6,6 +6,10 @@ Vue.use(Router);
 /* Layout */
 import Layout from "@/layout";
 
+/* Router Modules */
+import chartsRouter from "@/router/modules/charts"; // 图表二级路由
+import nestedRouter from "@/router/modules/nested"; // 嵌套多级路由
+
 /**
  * 子菜单 sub-menu 只出现在 children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -76,6 +80,9 @@ export const constantRoutes = [
       },
     ],
   },
+  // 当你的路由map太长,你可以分割成小模块
+  chartsRouter,
+  nestedRouter,
 ];
 
 /**
