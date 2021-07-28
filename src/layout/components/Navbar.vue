@@ -17,6 +17,7 @@
         <!-- <el-tooltip content="Global Size" effect="dark" placement="bottom">
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip> -->
+        <lang-select class="right-menu-item hover-effect" />
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
@@ -50,6 +51,7 @@ import Hamburger from "@/components/Hamburger";
 import Screenfull from "@/components/Screenfull";
 // import SizeSelect from "@/components/SizeSelect";
 import Search from "@/components/HeaderSearch";
+import LangSelect from "@/components/LangSelect";
 
 export default {
   components: {
@@ -58,6 +60,7 @@ export default {
     // ErrorLog,
     Screenfull,
     // SizeSelect,
+    LangSelect,
     Search,
   },
   computed: {

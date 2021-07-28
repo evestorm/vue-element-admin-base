@@ -270,3 +270,13 @@ password: 111111
 2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
 
 3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
+
+## 国际化
+
+国际化首先得下载 `npm i vue-i18n` ，文档见：<<https://panjiachen.github.io/vue-element-admin-site/zh/guide/advanced/i18n.html#%E5%9B%BD%E9%99%85%E5%8C%9>
+
+对应分支：<https://github.com/PanJiaChen/vue-element-admin/blob/i18n/src/lang/index.js>
+
+note：路由中 meta 中的 title 得和 `src/lang/` 下国际化字段相同。
+
+具体可见「国际化」分支提交的 commit
