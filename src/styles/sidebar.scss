@@ -227,7 +227,7 @@
     &.is-active {
       color: $menuActiveText !important;
       background: $menuActiveBg !important;
-      border-right: 4px solid $menuBorderBg;
+      // border-right: 4px solid $menuBorderBg;
       // color: red !important;
       // background: yellow !important;
       // border-right: 4px solid green;
@@ -237,7 +237,7 @@
     &:hover {
       color: $subMenuHoverText !important;
       background-color: $subMenuHoverBg !important;
-      border-right: 4px solid $menuBorderBg;
+      // border-right: 4px solid $menuBorderBg;
       // color: white !important;
       // background-color: black !important;
       // border-right: 4px solid pink;
@@ -314,7 +314,7 @@
       &.is-active {
         color: $menuActiveText !important;
         background: $menuActiveBg !important;
-        border-right: 4px solid $menuBorderBg;
+        // border-right: 4px solid $menuBorderBg;
         // color: red !important;
         // background: yellow !important;
         // border-right: 4px solid green;
