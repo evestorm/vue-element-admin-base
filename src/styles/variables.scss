@@ -38,22 +38,22 @@ $messageBoxBtnBorderColorActive: #0b3d72;
 
 // 侧边栏
 $logoBg: #2b2f3a; // 侧边栏 logo 背景色
-$menuText: rgb(191, 203, 217); // 菜单字体normal颜色
+$menuText: rgba(0, 0, 0, 0.87); // 菜单字体normal颜色
 $menuHoverText: #000; // 菜单字体hover颜色
-$menuActiveText: #000; // 菜单字体active颜色
+$menuActiveText: white; // 菜单字体active颜色
 
-$menuBg: rgb(48, 65, 86); // 侧边栏菜单normal背景色
-$menuHoverBg: #8ff; // 侧边栏菜单hover背景色
-$menuActiveBg: #0ff; // 侧边栏菜单active背景色
+$menuBg: white; // 侧边栏菜单normal背景色
+$menuHoverBg: rgb(216, 232, 255); // 侧边栏菜单hover背景色
+$menuActiveBg: rgb(2 179 228); // 侧边栏菜单active背景色
 $menuBorderBg: #000; // 侧边栏菜单右侧边框颜色
 
 $subMenuText: $menuText; // 子菜单字体normal颜色
-$subMenuParentActiveText: #fff; // 子菜单的外层父菜单的字体active颜色
+$subMenuParentActiveText: $menuBg; // 子菜单的外层父菜单的字体active颜色
 $subMenuHoverText: $menuHoverText; // 子菜单字体hover颜色
 $subMenuActiveText: $menuActiveText; // 子菜单字体active颜色 https://github.com/ElemeFE/element/issues/12951
 
-$subMenuBg: #1f2d3d; // 子菜单normal背景色
-$subMenuParentActiveBg: #000; // 子菜单高亮状态下，父菜单背景色
+$subMenuBg: $menuBg; // 子菜单normal背景色
+$subMenuParentActiveBg: #008eb6; // 子菜单高亮状态下，父菜单背景色
 $subMenuHoverBg: $menuHoverBg; // 子菜单hover背景色
 $subMenuActiveBg: $menuActiveBg; // 子菜单active背景色
 

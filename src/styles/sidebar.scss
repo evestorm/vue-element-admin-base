@@ -393,11 +393,11 @@
               @include resetHorizontal;
             }
 
-            color: $subMenuText !important;
+            color: $subMenuActiveText !important;
             background-color: $subMenuParentActiveBg !important;
 
             i {
-              color: $subMenuText;
+              color: $subMenuActiveText;
             }
           }
         }
