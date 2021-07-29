@@ -83,6 +83,16 @@ export const constantRoutes = [
   // 当你的路由map太长,你可以分割成小模块
   chartsRouter,
   nestedRouter,
+  {
+    path: "external-link",
+    component: Layout,
+    children: [
+      {
+        path: "https://github.com/PanJiaChen/vue-element-admin",
+        meta: { title: "外部链接", icon: "link" },
+      },
+    ],
+  },
 ];
 
 /**

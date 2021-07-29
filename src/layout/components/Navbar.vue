@@ -2,23 +2,10 @@
   <div class="navbar">
     <!-- 顶部导航栏的汉堡菜单，用来隐藏和显示侧边栏 -->
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-    <!-- 首页/Home -->
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+    <!-- 导航栏 -->
+    <menu-view />
     <!-- 右侧菜单 -->
     <div class="right-menu">
-      <template v-if="device !== 'mobile'">
-        <!-- 搜索侧边栏菜单 -->
-        <search id="header-search" class="right-menu-item" />
-        <!-- 错误日志 -->
-        <!-- <error-log class="errLog-container right-menu-item hover-effect" /> -->
-        <!-- 全屏 -->
-        <screenfull id="screenfull" class="right-menu-item hover-effect" />
-        <!-- 改变tagView文字大小 -->
-        <!-- <el-tooltip content="Global Size" effect="dark" placement="bottom">
-          <size-select id="size-select" class="right-menu-item hover-effect" />
-        </el-tooltip> -->
-      </template>
-
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <!-- 当前登录用户avatar -->
         <div class="avatar-wrapper">
@@ -29,10 +16,6 @@
           <router-link to="/">
             <el-dropdown-item>首页</el-dropdown-item>
           </router-link>
-          <!-- github -->
-          <!-- <a target="_blank" href="https://github.com/PanJiaChen/vue-element-admin/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a> -->
           <el-dropdown-item divided @click.native="logout">
             <span style="display: block">登出</span>
           </el-dropdown-item>
@@ -44,21 +27,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Breadcrumb from "@/components/Breadcrumb";
 import Hamburger from "@/components/Hamburger";
-// import ErrorLog from "@/components/ErrorLog";
-import Screenfull from "@/components/Screenfull";
-// import SizeSelect from "@/components/SizeSelect";
-import Search from "@/components/HeaderSearch";
+import MenuView from "@/layout/components/MenuView";
 
 export default {
   components: {
-    Breadcrumb,
     Hamburger,
-    // ErrorLog,
-    Screenfull,
-    // SizeSelect,
-    Search,
+    MenuView,
   },
   computed: {
     ...mapGetters(["sidebar", "avatar", "device"]),
