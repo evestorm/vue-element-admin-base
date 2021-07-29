@@ -84,10 +84,11 @@
   .hideSidebar {
     .sidebar-container {
       width: 54px !important;
+      width: $sideBarFoldWidth !important;
     }
 
     .main-container {
-      margin-left: 54px;
+      margin-left: $sideBarFoldWidth;
     }
 
     .submenu-title-noDropdown {
@@ -107,6 +108,50 @@
       }
     }
 
+    .menu-view {
+      .el-menu .nest-menu .el-submenu > .el-submenu__title i {
+        top: 28px;
+      }
+
+      .submenu-title-noDropdown {
+        position: relative;
+        padding: 0 20px !important;
+
+        .el-tooltip {
+          padding: 0 !important;
+
+          .svg-icon {
+            margin-left: 0;
+          }
+
+          .sub-el-icon {
+            margin-left: 0;
+          }
+        }
+      }
+
+      .el-submenu {
+        overflow: hidden;
+
+        & > .el-submenu__title {
+          padding: 0 20px !important;
+
+          .svg-icon {
+            margin-left: 0;
+          }
+
+          .sub-el-icon {
+            margin-left: 0;
+          }
+
+          .el-submenu__icon-arrow {
+            top: 28px;
+            display: block;
+          }
+        }
+      }
+    }
+
     .el-submenu {
       overflow: hidden;
 
@@ -122,6 +167,7 @@
         }
 
         .el-submenu__icon-arrow {
+          top: 28px;
           display: none;
         }
       }
@@ -207,114 +253,52 @@
   }
 }
 
+@mixin resetHorizontal {
+  float: left !important;
+  height: 50px !important;
+  margin: 0 !important;
+  line-height: 50px !important;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  svg + span {
+    margin-right: 20px;
+  }
+}
+
 // NOTE: 一个完整 ul 结构
-.el-menu {
-  width: 100% !important;
-  height: 100%;
-  background-color: $menuBg;
-  border: none;
-
-  // 无子菜单
-  .el-menu-item.submenu-title-noDropdown {
-    height: 66px;
-    font-family: Microsoft YaHei;
-    font-size: 16px !important;
-    font-weight: 400;
-    line-height: 66px;
-    color: $menuText;
-
-    // active
-    &.is-active {
-      color: $menuActiveText !important;
-      background: $menuActiveBg !important;
-      border-right: 4px solid $menuBorderBg;
-      // color: red !important;
-      // background: yellow !important;
-      // border-right: 4px solid green;
+@mixin generateMenu($isHorizontal: false) {
+  .el-menu {
+    @if ($isHorizontal) {
+      display: flex;
+      height: 100%;
     }
 
-    // hover
-    &:hover {
-      color: $subMenuHoverText !important;
-      background-color: $subMenuHoverBg !important;
-      border-right: 4px solid $menuBorderBg;
-      // color: white !important;
-      // background-color: black !important;
-      // border-right: 4px solid pink;
-    }
-  }
+    width: 100% !important;
+    height: 100%;
+    background-color: $menuBg;
+    border: none;
 
-  // 有子菜单
-  .el-submenu {
-    // 顶级菜单标题
-    .el-submenu__title {
-      font-size: 16px;
-      // 未展开，子菜单未选中的状态
-      color: $subMenuText !important;
-      background-color: $menuBg !important;
-
-      // 二级菜单的下拉三角箭头
-      i {
-        color: $subMenuText;
+    // 无子菜单
+    .el-menu-item.submenu-title-noDropdown {
+      @if ($isHorizontal) {
+        @include resetHorizontal;
       }
 
-      // color: red !important;
-      // background-color: lightpink !important;
-    }
-
-    // 展开后的容器背景色
-    .el-menu {
-      background-color: $subMenuBg !important;
-      // background-color: orange !important;
-    }
-    // active某个子菜单，其父菜单样式
-    &.is-active .el-submenu__title {
-      color: $subMenuParentActiveText !important;
-      background-color: $subMenuParentActiveBg !important;
-
-      i {
-        color: $subMenuParentActiveText;
-      }
-    }
-  }
-
-  // 嵌套菜单
-  .nest-menu {
-    // 如果嵌套菜单下还有嵌套菜单，则所有子菜单默认背景黑色
-    .el-submenu {
-      & > .el-submenu__title {
-        color: $subMenuText !important;
-        background-color: $subMenuBg !important;
-
-        i {
-          color: $subMenuText;
-        }
-      }
-
-      // 选中嵌套菜单，上层菜单高亮
-      &.is-active {
-        & > .el-submenu__title {
-          color: $subMenuText !important;
-          background-color: $subMenuParentActiveBg !important;
-
-          i {
-            color: $subMenuText;
-          }
-        }
-      }
-    }
-
-    .el-menu-item {
+      height: 66px;
+      font-family: Microsoft YaHei;
       font-size: 16px !important;
-      color: $menuText !important;
-      background: $subMenuBg !important;
-      // color: black !important;
-      // background: white !important;
+      font-weight: 400;
+      line-height: 66px;
+      color: $menuText;
+
       // active
       &.is-active {
         color: $menuActiveText !important;
         background: $menuActiveBg !important;
-        border-right: 4px solid $menuBorderBg;
+        // border-right: 4px solid $menuBorderBg;
         // color: red !important;
         // background: yellow !important;
         // border-right: 4px solid green;
@@ -324,9 +308,131 @@
       &:hover {
         color: $subMenuHoverText !important;
         background-color: $subMenuHoverBg !important;
-        // color: pink !important;
-        // background-color: lemonchiffon !important;
+        // border-right: 4px solid $menuBorderBg;
+        // color: white !important;
+        // background-color: black !important;
+        // border-right: 4px solid pink;
+      }
+    }
+
+    // 有子菜单
+    .el-submenu {
+      @if ($isHorizontal) {
+        @include resetHorizontal;
+      }
+
+      // 顶级菜单标题
+      .el-submenu__title {
+        font-size: 16px;
+        // 未展开，子菜单未选中的状态
+        color: $subMenuText !important;
+        background-color: $menuBg !important;
+
+        @if ($isHorizontal) {
+          @include resetHorizontal;
+        }
+
+        // 二级菜单的下拉三角箭头
+        i {
+          color: $subMenuText;
+        }
+
+        // color: red !important;
+        // background-color: lightpink !important;
+      }
+
+      // 展开后的容器背景色
+      .el-menu {
+        @if ($isHorizontal) {
+          @include resetHorizontal;
+        }
+
+        background-color: $subMenuBg !important;
+        // background-color: orange !important;
+      }
+      // active某个子菜单，其父菜单样式
+      &.is-active .el-submenu__title {
+        @if ($isHorizontal) {
+          @include resetHorizontal;
+        }
+
+        color: $subMenuParentActiveText !important;
+        background-color: $subMenuParentActiveBg !important;
+
+        i {
+          color: $subMenuParentActiveText;
+        }
+      }
+    }
+
+    // 嵌套菜单
+    .nest-menu {
+      @if ($isHorizontal) {
+        @include resetHorizontal;
+      }
+
+      // 如果嵌套菜单下还有嵌套菜单，则所有子菜单默认背景黑色
+      .el-submenu {
+        & > .el-submenu__title {
+          @if ($isHorizontal) {
+            @include resetHorizontal;
+          }
+
+          color: $subMenuText !important;
+          background-color: $subMenuBg !important;
+
+          i {
+            color: $subMenuText;
+          }
+        }
+
+        // 选中嵌套菜单，上层菜单高亮
+        &.is-active {
+          & > .el-submenu__title {
+            @if ($isHorizontal) {
+              @include resetHorizontal;
+            }
+
+            color: $subMenuText !important;
+            background-color: $subMenuParentActiveBg !important;
+
+            i {
+              color: $subMenuText;
+            }
+          }
+        }
+      }
+
+      .el-menu-item {
+        @if ($isHorizontal) {
+          @include resetHorizontal;
+        }
+
+        font-size: 16px !important;
+        color: $menuText !important;
+        background: $subMenuBg !important;
+        // color: black !important;
+        // background: white !important;
+        // active
+        &.is-active {
+          color: $menuActiveText !important;
+          background: $menuActiveBg !important;
+          // border-right: 4px solid $menuBorderBg;
+          // color: red !important;
+          // background: yellow !important;
+          // border-right: 4px solid green;
+        }
+
+        // hover
+        &:hover {
+          color: $subMenuHoverText !important;
+          background-color: $subMenuHoverBg !important;
+          // color: pink !important;
+          // background-color: lemonchiffon !important;
+        }
       }
     }
   }
 }
+
+@include generateMenu();

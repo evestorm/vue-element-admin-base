@@ -1,9 +1,11 @@
 <template>
   <div class="navbar">
+    <logo v-show="device !== 'mobile'" :collapse="false" />
     <!-- 顶部导航栏的汉堡菜单，用来隐藏和显示侧边栏 -->
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger v-show="device === 'mobile'" id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <!-- 导航栏 -->
-    <menu-view />
+    <menu-view v-show="device !== 'mobile'" />
+
     <!-- 右侧菜单 -->
     <div class="right-menu">
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
@@ -29,11 +31,13 @@
 import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
 import MenuView from "@/layout/components/MenuView";
+import Logo from "@/layout/components/Sidebar/Logo.vue";
 
 export default {
   components: {
     Hamburger,
     MenuView,
+    Logo,
   },
   computed: {
     ...mapGetters(["sidebar", "avatar", "device"]),
@@ -55,10 +59,12 @@ export default {
 
 .navbar {
   position: relative;
+  display: flex;
   height: 50px;
   overflow: hidden;
   background: $navBgColor;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  justify-content: flex-start;
 
   .hamburger-container {
     float: left;
@@ -83,8 +89,8 @@ export default {
   }
 
   .right-menu {
-    float: right;
     height: 100%;
+    margin-left: auto;
     line-height: 50px;
 
     &:focus {

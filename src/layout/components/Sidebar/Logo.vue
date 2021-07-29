@@ -50,6 +50,7 @@ export default {
   position: relative;
   width: 100%;
   height: 50px;
+  max-width: $sideBarWidth;
   overflow: hidden;
   line-height: 50px;
   text-align: center;
