@@ -72,6 +72,10 @@ export default {
 
   ::v-deep {
     @include generateMenu(true);
+
+    .el-menu {
+      justify-content: center;
+    }
   }
 }
 </style>

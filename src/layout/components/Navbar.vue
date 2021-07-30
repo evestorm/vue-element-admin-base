@@ -1,30 +1,40 @@
 <template>
-  <div class="navbar">
-    <logo v-show="device !== 'mobile'" :collapse="false" />
-    <!-- 顶部导航栏的汉堡菜单，用来隐藏和显示侧边栏 -->
-    <hamburger v-show="device === 'mobile'" id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-    <!-- 导航栏 -->
-    <menu-view v-show="device !== 'mobile'" />
-
-    <!-- 右侧菜单 -->
-    <div v-if="needLogin" class="right-menu">
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <!-- 当前登录用户avatar -->
-        <div class="avatar-wrapper">
-          <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
-          <i class="el-icon-caret-bottom" />
-        </div>
-        <el-dropdown-menu slot="dropdown">
-          <router-link to="/">
-            <el-dropdown-item>首页</el-dropdown-item>
-          </router-link>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display: block">登出</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
-    </div>
-  </div>
+  <el-row class="navbar" :gutter="0">
+    <!-- <el-row :gutter="0"> -->
+    <el-col v-show="device !== 'mobile'" class="hidden-lg-and-down">
+      <!-- 移动端不显示 -->
+      <logo :collapse="false" style="margin-right: auto" />
+    </el-col>
+    <el-col v-show="device === 'mobile'" class="hidden-lg-and-up">
+      <!-- 顶部导航栏的汉堡菜单，用来隐藏和显示侧边栏 -->
+      <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    </el-col>
+    <el-col class="hidden-lg-and-down">
+      <!-- 导航栏 -->
+      <menu-view v-show="device !== 'mobile'" />
+    </el-col>
+    <el-col>
+      <!-- 右侧菜单 -->
+      <div v-if="needLogin" class="right-menu">
+        <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+          <!-- 当前登录用户avatar -->
+          <div class="avatar-wrapper">
+            <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar" />
+            <i class="el-icon-caret-bottom" />
+          </div>
+          <el-dropdown-menu slot="dropdown">
+            <router-link to="/">
+              <el-dropdown-item>首页</el-dropdown-item>
+            </router-link>
+            <el-dropdown-item divided @click.native="logout">
+              <span style="display: block">登出</span>
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
+    </el-col>
+    <!-- </el-row> -->
+  </el-row>
 </template>
 
 <script>
@@ -70,7 +80,7 @@ export default {
   overflow: hidden;
   background: $navBgColor;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  justify-content: flex-start;
+  justify-content: flex-end;
 
   .hamburger-container {
     float: left;
@@ -96,8 +106,8 @@ export default {
 
   .right-menu {
     height: 100%;
-    margin-left: auto;
     line-height: 50px;
+    text-align: right;
 
     &:focus {
       outline: none;
