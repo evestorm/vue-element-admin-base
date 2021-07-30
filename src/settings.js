@@ -1,11 +1,11 @@
 module.exports = {
-  title: "后台管理系统",
+  title: "Web App",
 
   /**
    * @type {boolean} true | false
    * @description Whether show the settings right-panel
    */
-  showSettings: true,
+  showSettings: false,
 
   /**
    * @type {boolean} true | false
@@ -32,4 +32,9 @@ module.exports = {
    * If you want to also use it in dev, you can pass ['production', 'development']
    */
   errorLog: "production",
+
+  /**
+   * @description 是否需要登录逻辑
+   */
+  needLogin: false,
 };

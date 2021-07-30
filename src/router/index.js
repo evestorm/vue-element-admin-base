@@ -100,47 +100,47 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: "/permission",
-    component: Layout,
-    redirect: "/permission/page",
-    alwaysShow: true, // will always show the root menu
-    name: "Permission",
-    meta: {
-      title: "权限",
-      icon: "lock",
-      roles: ["admin", "editor"], // you can set roles in root nav
-    },
-    children: [
-      {
-        path: "page",
-        component: () => import("@/views/permission/page"),
-        name: "PagePermission",
-        meta: {
-          title: "页面权限",
-          roles: ["admin"], // 或者你可以只在子导航设置角色
-        },
-      },
-      {
-        path: "directive",
-        component: () => import("@/views/permission/directive"),
-        name: "DirectivePermission",
-        meta: {
-          title: "指令权限",
-          // 如果不设置角色,意思是:这个页面不需要许可
-        },
-      },
-      {
-        path: "role",
-        component: () => import("@/views/permission/role"),
-        name: "RolePermission",
-        meta: {
-          title: "角色权限",
-          roles: ["admin"],
-        },
-      },
-    ],
-  },
+  // {
+  //   path: "/permission",
+  //   component: Layout,
+  //   redirect: "/permission/page",
+  //   alwaysShow: true, // will always show the root menu
+  //   name: "Permission",
+  //   meta: {
+  //     title: "权限",
+  //     icon: "lock",
+  //     roles: ["admin", "editor"], // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: "page",
+  //       component: () => import("@/views/permission/page"),
+  //       name: "PagePermission",
+  //       meta: {
+  //         title: "页面权限",
+  //         roles: ["admin"], // 或者你可以只在子导航设置角色
+  //       },
+  //     },
+  //     {
+  //       path: "directive",
+  //       component: () => import("@/views/permission/directive"),
+  //       name: "DirectivePermission",
+  //       meta: {
+  //         title: "指令权限",
+  //         // 如果不设置角色,意思是:这个页面不需要许可
+  //       },
+  //     },
+  //     {
+  //       path: "role",
+  //       component: () => import("@/views/permission/role"),
+  //       name: "RolePermission",
+  //       meta: {
+  //         title: "角色权限",
+  //         roles: ["admin"],
+  //       },
+  //     },
+  //   ],
+  // },
   // 404 page must be placed at the end !!!
   { path: "*", redirect: "/404", hidden: true },
 ];

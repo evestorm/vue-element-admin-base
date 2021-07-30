@@ -1,4 +1,5 @@
 import router from "./router";
+import { asyncRoutes } from "@/router";
 import store from "./store";
 import { Message } from "element-ui";
 import NProgress from "nprogress"; // 进度条指示器
@@ -7,10 +8,17 @@ import getPageTitle from "@/utils/get-page-title"; // 获取当前页面标题
 // import * as utils from "@/utils/index";
 import storage from "@/utils/storage/index";
 // import appConfig from "@/config/index";
+import { needLogin } from "./settings";
 
 NProgress.configure({ showSpinner: false }); // 进度条指示器配置
 
 const whiteList = ["/login"]; // 白名单
+
+if (!needLogin) {
+  store.commit("permission/SET_ROUTES", asyncRoutes);
+  // 动态添加 route
+  router.addRoutes(asyncRoutes);
+}
 
 router.beforeEach(async (to, from, next) => {
   // 开始跑进度条
@@ -18,6 +26,18 @@ router.beforeEach(async (to, from, next) => {
 
   // 设置页面标题
   document.title = getPageTitle(to.meta.title);
+
+  // 如果不需要登录
+  if (!needLogin) {
+    if (to.path === "/login") {
+      next({ path: "/home" });
+      NProgress.done();
+    } else {
+      next();
+      NProgress.done();
+    }
+    return;
+  }
 
   // 判断用户是否已经登录
   const hasToken = storage.getToken();
