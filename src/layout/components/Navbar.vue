@@ -7,7 +7,7 @@
     <menu-view v-show="device !== 'mobile'" />
 
     <!-- 右侧菜单 -->
-    <div class="right-menu">
+    <div v-if="needLogin" class="right-menu">
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <!-- 当前登录用户avatar -->
         <div class="avatar-wrapper">
@@ -32,12 +32,18 @@ import { mapGetters } from "vuex";
 import Hamburger from "@/components/Hamburger";
 import MenuView from "@/layout/components/MenuView";
 import Logo from "@/layout/components/Sidebar/Logo.vue";
+import { needLogin } from "@/settings";
 
 export default {
   components: {
     Hamburger,
     MenuView,
     Logo,
+  },
+  data() {
+    return {
+      needLogin,
+    };
   },
   computed: {
     ...mapGetters(["sidebar", "avatar", "device"]),
