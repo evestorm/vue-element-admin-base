@@ -73,6 +73,25 @@ const actions = {
     // commit("SET_FLAT_MENU", data.menu);
     return Promise.resolve([undefined, true]);
   },
+  // 单点登录
+  async loginSSO({ commit }, userInfo) {
+    const { sid, userId, userName } = userInfo;
+    // const userData = await $user.loginSSO({ sid, userId, userName });
+    const userData = await $user.loginSSO({ hafSID: sid, userId, username: userName });
+    const [err, data] = userData;
+    console.log(err, data);
+    if (err) {
+      return Promise.resolve([err, undefined]);
+    }
+    // 保存 token
+    // 保存用户信息
+    // 保存 menu
+    commit("SET_TOKEN", data.data.token);
+    commit("SET_USER_INFO", data.data);
+    commit("SET_MENU", data.data.menus);
+    commit("SET_FLAT_MENU", data.data.menus);
+    return Promise.resolve([undefined, true]);
+  },
   // 获取菜单
   async getMenu({ commit }, preload) {
     const menu = await $user.menu({ userName: preload });

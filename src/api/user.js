@@ -7,6 +7,7 @@ const urlLists = {
    * ! ---------------------- 用户登录 ----------------------
    */
   login: "/login.do", // 登录
+  loginSSO: "https://hxwlappd.huaxincem.com/api/base/doLoginHAF", // SSO登录
   menu: "/menu.do", // 菜单
   getInfo: `${process.env.VUE_APP_MOCK_PREFIX}/user/info`, // 获取用户信息
   logout: `${process.env.VUE_APP_MOCK_PREFIX}/user/logout`, // 登出
@@ -14,6 +15,9 @@ const urlLists = {
 
 const login = params => {
   return request.post(urlLists.login, qs.stringify(params));
+};
+const loginSSO = params => {
+  return request.post(urlLists.loginSSO, params);
 };
 const menu = params => {
   return request.post(urlLists.menu, params);
@@ -24,13 +28,13 @@ const getInfo = (params = { token: "" }) => {
 const logout = (params = {}) => {
   return request.post(urlLists.logout, params);
 };
-
 const pcLogin = (params = { sid: "", userId: "", userName: "" }) => {
   return request.post(urlLists.pcLogin, params);
 };
 
 export default {
   login,
+  loginSSO,
   menu,
   getInfo,
   logout,

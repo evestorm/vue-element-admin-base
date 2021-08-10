@@ -15,7 +15,7 @@ import store from "./store";
 import router from "./router";
 
 import "./icons"; // 加载 icons（svg）
-import "./permission"; // 权限控制
+import "./permission_sso"; // 权限控制
 import "./utils/error-log"; // 错误日志
 
 import * as filters from "./filters"; // 全局过滤器
