@@ -5,7 +5,7 @@
     <!-- 首页/Home -->
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <!-- 右侧菜单 -->
-    <div class="right-menu">
+    <div v-if="needLogin" class="right-menu">
       <template v-if="device !== 'mobile'">
         <!-- 搜索侧边栏菜单 -->
         <search id="header-search" class="right-menu-item" />
@@ -50,6 +50,7 @@ import Hamburger from "@/components/Hamburger";
 import Screenfull from "@/components/Screenfull";
 // import SizeSelect from "@/components/SizeSelect";
 import Search from "@/components/HeaderSearch";
+import { needLogin } from "@/settings";
 
 export default {
   components: {
@@ -59,6 +60,11 @@ export default {
     Screenfull,
     // SizeSelect,
     Search,
+  },
+  data() {
+    return {
+      needLogin,
+    };
   },
   computed: {
     ...mapGetters(["sidebar", "avatar", "device"]),

@@ -5,7 +5,7 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the settings right-panel
    */
-  showSettings: true,
+  showSettings: false,
 
   /**
    * @type {boolean} true | false
@@ -32,4 +32,14 @@ module.exports = {
    * If you want to also use it in dev, you can pass ['production', 'development']
    */
   errorLog: "production",
+
+  /**
+   * @description 是否需要登录逻辑
+   */
+  needLogin: true,
+
+  /**
+   * @description 是否是单点登录
+   */
+  isSSO: false,
 };
