@@ -77,7 +77,7 @@ service.interceptors.response.use(
     const msg = rootRes.msg;
 
     // NOTE: 如果自定义 code 不是 10000 ，当错误处理
-    const successCode = 200; // adl: 10000 tms: 200
+    const successCode = 10000; // adl: 10000 tms: 200
     if (customCode !== successCode) {
       Message({
         message: msg || "出错了 o(╥﹏╥)o",

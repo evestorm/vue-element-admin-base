@@ -10,19 +10,19 @@ import storage from "@/utils/storage/index";
 function hasPermission(roles, route) {
   const flatMenu = storage.getFlatMenu() || [];
   // TODO：根据后台结果筛选
-  // return (
-  //   flatMenu.findIndex(v => {
-  //     // console.log(v.permisCode, route.name);
-  //     return v.permisCode.toLowerCase() === route.name ? route.name.toLowerCase() : "";
-  //   }) > -1 || route.path === "*"
-  // );
-  // TODO：不用筛选，依赖本地
   return (
     flatMenu.findIndex(v => {
       // console.log(v.permisCode, route.name);
-      return route.name ? route.name.toLowerCase() : "";
+      return v.permisCode.toLowerCase() === route.name ? route.name.toLowerCase() : "";
     }) > -1 || route.path === "*"
   );
+  // TODO：不用筛选，依赖本地
+  // return (
+  //   flatMenu.findIndex(v => {
+  //     // console.log(v.permisCode, route.name);
+  //     return route.name ? route.name.toLowerCase() : "";
+  //   }) > -1 || route.path === "*"
+  // );
 }
 
 /**
