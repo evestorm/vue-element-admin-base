@@ -265,8 +265,22 @@ password: 111111
 
 ## feature
 
-1. 必须得账号登录
+### 如果需要登录页，必须登录
+
+1. 设置 main.js 中的权限文件为 `import "./permission"; // 权限控制`
 
 2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
 
 3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
+
+### 如果从 oa 跳转过来，不需要登录
+
+1. 设置 main.js 中的权限文件为 `import "./permission_sso"; // 权限控制`
+
+2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
+
+3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
+
+### 如果完全不需要登录
+
+1. 把 settings.js 文件中的 needLogin 设置为 false
