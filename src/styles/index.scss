@@ -4,6 +4,7 @@
 @import "./element-ui.scss";
 @import "./sidebar.scss";
 @import "./btn.scss";
+@import "./responsive";
 
 body {
   height: 100%;
@@ -1449,4 +1450,26 @@ body {
 
 .pr-5 {
   padding-right: 50px;
+}
+
+// 最大行数，超出省略号
+@mixin max-lines($lines) {
+  // 对象作为伸缩盒子模型显示
+  display: -webkit-box;
+  // 隐藏超出的内容
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // 属性规定自动换行的处理方法。normal(使用浏览器默认的换行规则。),break-all(允许在单词内换行。),keep-all(只能在半角空格或连字符处换行。)
+  word-break: break-all;
+  // 设置或检索伸缩盒对象的子元素的排列方式
+  -webkit-box-orient: vertical;
+  // 显示的行数
+  -webkit-line-clamp: $lines;
+}
+
+// 毛玻璃效果
+@mixin glass-morphism($bg, $blur) {
+  background-color: $bg;
+  -webkit-backdrop-filter: blur($blur + px);
+  backdrop-filter: blur($blur + px);
 }

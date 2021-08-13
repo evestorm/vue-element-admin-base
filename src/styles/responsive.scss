@@ -1,0 +1,33 @@
+$breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 576px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px
+);
+
+$container-max-widths: (
+  xs: none,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+);
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@each $device, $breakpoint in $breakpoints {
+  @media only screen and (min-width: $breakpoint) {
+    .container {
+      max-width: map-get($container-max-widths, $device);
+    }
+  }
+}
