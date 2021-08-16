@@ -124,7 +124,8 @@ service.interceptors.response.use(
 
 // 包装请求
 let request = {};
-const base = process.env === "production" ? appConfig.baseURL : "./tms-facdel/"; // url = base url + request url
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
+const base = process.env.NODE_ENV === "production" ? appConfig.baseURL : "./tms-facdel/"; // url = base url + request url
 request.get = (url, params, baseURL = base) => {
   return service.get(url, { params, baseURL });
 };

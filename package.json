@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "lint": "eslint --fix --ext .js,.vue src",
+    "build:dev": "vue-cli-service build --mode dev",
+    "build:test": "vue-cli-service build --mode test",
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
