@@ -284,3 +284,11 @@ password: 111111
 ### 如果完全不需要登录
 
 1. 把 settings.js 文件中的 needLogin 设置为 false
+
+### 移除的 npm
+
+"tui-editor": "1.3.3",
+
+此库会导致 npm 超时报错
+
+<https://github.com/PanJiaChen/vue-element-admin/issues/3491>
