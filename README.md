@@ -292,3 +292,33 @@ password: 111111
 此库会导致 npm 超时报错
 
 <https://github.com/PanJiaChen/vue-element-admin/issues/3491>
+
+### 记录
+
+package.json 中的 npm 命令中：
+
+```shell
+"build:dev": "vue-cli-service build --mode dev",
+```
+
+要想走 `.env.dev` 且又想 `process.env.NODE_ENV` 仍然是 production ，则需要在 `.env.dev` 中设置 `NODE_ENV` 为 'production'：
+
+```shell
+# set NODE_ENV to production
+NODE_ENV = 'production'
+# just a flag
+VUE_APP_ENV = 'dev'
+```
+
+另外， `.env.*` 中的配置文件，注释不要跟在变量后面：
+
+```js
+VUE_APP_ENV = 'dev' # just a flag
+```
+
+而要另起一行写：
+
+```js
+# just a flag
+VUE_APP_ENV = 'dev'
+```
