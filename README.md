@@ -270,3 +270,11 @@ password: 111111
 2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
 
 3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
+
+### 移除的 npm
+
+"tui-editor": "1.3.3",
+
+此库会导致 npm 超时报错
+
+<https://github.com/PanJiaChen/vue-element-admin/issues/3491>
