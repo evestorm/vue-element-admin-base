@@ -50,10 +50,8 @@ export default {
         const isMobile = this.$_isMobile();
         store.dispatch("app/toggleDevice", isMobile ? "mobile" : "desktop");
 
-        // 是移动端关闭侧边栏
-        if (isMobile) {
-          store.dispatch("app/closeSideBar", { withoutAnimation: true });
-        }
+        // 不管是不是移动端，更改浏览器宽度就关闭侧边栏
+        store.dispatch("app/closeSideBar", { withoutAnimation: true });
       }
     },
   },
