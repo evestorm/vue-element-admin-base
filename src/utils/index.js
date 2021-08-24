@@ -1,5 +1,7 @@
 import axios from "axios";
 import storage from "@/utils/storage/index";
+import appConfig from "@/config/index";
+
 /**
  * Created by PanJiaChen on 16/11/18.
  */
@@ -863,6 +865,10 @@ export const blobToFile = (blob, fileName) => {
   return blob;
 };
 
+export const isCompleteURL = url => {
+  return /(http|https):\/\/([\w.]+\/?)\S*/.test(url);
+};
+
 /**
  * @description 导出excel并下载
  * @param {Blob} data 数据流
@@ -885,7 +891,7 @@ export const blobToFile = (blob, fileName) => {
 export const exportExcel = data => {
   axios({
     method: data.method,
-    url: data.url,
+    url: isCompleteURL(data.url) ? data.url : appConfig.baseURL + data.url,
     data: data.params,
     responseType: "blob",
     headers: {
