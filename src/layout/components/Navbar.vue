@@ -13,9 +13,9 @@
       <!-- 导航栏 -->
       <menu-view v-show="device !== 'mobile'" />
     </el-col>
-    <el-col>
+    <el-col v-if="needLogin">
       <!-- 右侧菜单 -->
-      <div v-if="needLogin" class="right-menu">
+      <div class="right-menu">
         <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
           <!-- 当前登录用户avatar -->
           <div class="avatar-wrapper">
