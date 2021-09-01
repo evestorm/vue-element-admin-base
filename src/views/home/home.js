@@ -43,6 +43,9 @@ export default {
   methods: {
     ...mapMutations("demo", ["SET_NAME"]),
     ...mapActions("demo", ["getNewsInfo"]),
+    handleClick() {
+      console.log("123");
+    },
   },
   // 监听
   watch: {

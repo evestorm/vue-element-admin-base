@@ -26,11 +26,14 @@ import * as utils from "@/utils/index";
 import create from "@/utils/create.js";
 import storage from "@/utils/storage/index";
 import enums from "@/utils/enum/index";
+import preventReClick from "@/directive/prevent-re-click";
 
 Vue.use(Element, {
   size: Cookies.get("size") || "medium", // set element-ui default size
   // locale: enLang, // 如果使用中文，无需设置，请删除
 });
+
+Vue.use(preventReClick);
 
 // 注册全局过滤器
 Object.keys(filters).forEach(key => {
