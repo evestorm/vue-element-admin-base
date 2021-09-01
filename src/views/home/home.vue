@@ -8,6 +8,8 @@
     <div>{{ token }}</div>
     <!-- 组件 -->
     <sub-comp></sub-comp>
+
+    <el-button v-preventReClick="1000" type="primary" @click="handleClick">点我</el-button>
   </div>
 </template>
 
