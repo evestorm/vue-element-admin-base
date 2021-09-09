@@ -333,6 +333,24 @@ export function html2Text(val) {
 }
 
 /**
+ * @description 富文本转纯文本
+ */
+export function getSimpleText(value) {
+  // 去除html
+  value = value.replace(/(\n)/g, "");
+  value = value.replace(/(\t)/g, "");
+  value = value.replace(/(\r)/g, "");
+  value = value.replace(/<\/?[^>]*>/g, "");
+  value = value.replace(/\s*/g, "");
+
+  // 去除转义字符
+  var arrEntities = { lt: "<", gt: ">", nbsp: " ", amp: "&", quot: '"' };
+  return value.replace(/&(lt|gt|nbsp|amp|quot);/gi, function (all, t) {
+    return arrEntities[t];
+  });
+}
+
+/**
  * @description 获得当前 URL
  * @example currentURL(); // 'https://google.com'
  */
