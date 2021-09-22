@@ -930,6 +930,36 @@ export const exportExcel = data => {
 };
 
 /**
+ * @description 下载pdf
+ */
+export const downloadPDF = data => {
+  axios({
+    method: data.method || "POST",
+    url: isCompleteURL(data.url) ? data.url : appConfig.baseURL + data.url,
+    data: data.params,
+    params: data.params,
+    responseType: "blob",
+  }).then(res => {
+    // console.log(res)
+    const _res = res.data;
+    let blob = new Blob([_res], { type: "application/pdf" });
+    let downloadElement = document.createElement("a");
+    let href = window.URL.createObjectURL(blob); //创建下载的链接
+    downloadElement.href = href;
+    downloadElement.style.display = "none";
+    // downloadElement.download = fileName; //下载后文件名
+    downloadElement.download = data.fileName; //下载后文件名
+    document.body.appendChild(downloadElement);
+    downloadElement.click(); //点击下载
+
+    setTimeout(() => {
+      document.body.removeChild(downloadElement); //下载完成移除元素
+      window.URL.revokeObjectURL(href); //释放掉blob对象
+    }, 1000);
+  });
+};
+
+/**
  * @description file转base64
  * @param { * } file 图片文件
  */
