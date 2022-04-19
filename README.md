@@ -24,22 +24,9 @@ npm install --registry=https://registry.npm.taobao.org
 # 本地开发 启动项目
 npm run dev
 # 构建测试环境
-npm run build:stage
+npm run build:test
 # 构建生产环境
 npm run build:prod
-```
-
-### 其它
-
-```shell
-# 预览发布环境效果
-npm run preview
-# 预览发布环境效果 + 静态资源分析
-npm run preview -- --report
-# 代码格式检查
-npm run lint
-# 代码格式检查并自动修复
-npm run lint -- --fix
 ```
 
 更多信息请参考 [使用文档](https://panjiachen.github.io/vue-element-admin-site/zh/)
@@ -95,7 +82,11 @@ npm run lint -- --fix
 
 ### 注释
 
-多写注释，data 下变量。
+多写注释:
+
+1. data 下变量必写
+2. computed、methods、watch 函数名上方必写方法说明
+3. 复杂业务逻辑的核心逻辑点必写注释
 
 ### 页面 & 组件
 
@@ -255,7 +246,7 @@ chore：构建过程或辅助工具的变动
 
 ```shell
 git commit -m 'feat: 添加首页'
-git commit -m 'fix: 修改状态不更新bug,issue编号：XXX'
+git commit -m 'fix: 修改状态不更新bug,issue编号: XXX'
 ```
 
 ## 登录
@@ -279,7 +270,7 @@ password: 111111
 
 2. 侧边栏路由的生成机制是：后端返回的 menu 中的路由字段 === 项目路由中的 name 字段，所以得在 src/store/modules/permission.js 的 hasPermission 方法做更改
 
-3. 完整的页面和更能见 main 分支。main 分支相当于未改造之前的项目模板
+3. 完整的页面和功能见 main 分支。main 分支相当于未改造之前的项目模板
 
 ### 如果完全不需要登录
 
@@ -322,3 +313,7 @@ VUE_APP_ENV = 'dev' # just a flag
 # just a flag
 VUE_APP_ENV = 'dev'
 ```
+
+## 分支
+
+一般 tms 项目都是单点登录的登录逻辑，所以主要用 `主要-登录和单点登录` 这个分支
