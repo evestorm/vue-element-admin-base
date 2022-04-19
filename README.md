@@ -1,5 +1,3 @@
-# ADL 平台
-
 ## 介绍
 
 基于 [PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin) 的后台前端继承解决方案。
